@@ -8,11 +8,28 @@ import be.thomasmore.projectmobiledevelopment.models.Groep;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    private static DatabaseHelper sInstance;
+
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "logopedie-project";
 
-    public DatabaseHelper(Context context) {
+    public static synchronized DatabaseHelper getInstance(Context context){
+        if (sInstance == null) {
+            sInstance = new DatabaseHelper(context.getApplicationContext());
+        }
+        return sInstance;
+    }
+
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public SQLiteDatabase getReadableDB(){
+        return this.getReadableDatabase();
+    }
+
+    public SQLiteDatabase getWriteableDB(){
+        return this.getWritableDatabase();
     }
 
     @Override
