@@ -4,14 +4,14 @@ public class Lettergreep {
 
     private long id;
     private int positieInWoord;
-    private Woord woord;
+    private Long woordID;
 
 
     public Lettergreep(){}
-    public Lettergreep(long id, int positieInWoord, Woord woord){
+    public Lettergreep(long id, int positieInWoord, Long woordID){
         this.id = id;
         this.positieInWoord = positieInWoord;
-        this.woord = woord;
+        this.woordID = woordID;
     }
 
 
@@ -29,10 +29,10 @@ public class Lettergreep {
         this.positieInWoord = positieInWoord;
     }
 
-    public Woord getWoord() {
-        return woord;
+    public Long getWoordID() {
+        return woordID;
     }
-    public void setWoord(Woord woord) {
-        this.woord = woord;
+    public void setWoordID(Long woordID) {
+        this.woordID = woordID;
     }
 }
