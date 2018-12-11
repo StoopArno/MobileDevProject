@@ -3,15 +3,15 @@ package be.thomasmore.projectmobiledevelopment.models;
 public class KindSessie {
 
     private long id;
-    private Kind kind;
-    private Woordgroep woordgroep;
+    private Long kindID;
+    private Long woordgroepID;
 
 
     public KindSessie(){}
-    public KindSessie(long id, Kind kind, Woordgroep woordgroep){
+    public KindSessie(long id, Long kindID, Long woordgroepID){
         this.id = id;
-        this.kind = kind;
-        this.woordgroep = woordgroep;
+        this.kindID = kindID;
+        this.woordgroepID = woordgroepID;
     }
 
 
@@ -22,17 +22,17 @@ public class KindSessie {
         this.id = id;
     }
 
-    public Kind getKind() {
-        return kind;
+    public Long getKindID() {
+        return kindID;
     }
-    public void setKind(Kind kind) {
-        this.kind = kind;
+    public void setKindID(Long kindID) {
+        this.kindID = kindID;
     }
 
-    public Woordgroep getWoordgroep() {
-        return woordgroep;
+    public Long getWoordgroepID() {
+        return woordgroepID;
     }
-    public void setWoordgroep(Woordgroep woordgroep) {
-        this.woordgroep = woordgroep;
+    public void setWoordgroepID(Long woordgroepID) {
+        this.woordgroepID = woordgroepID;
     }
 }

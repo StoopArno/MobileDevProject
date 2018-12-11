@@ -4,16 +4,16 @@ public class ConditieGroep {
 
     private long id;
     private int conditieNr;
-    private Groep groep;
-    private Woordgroep woordgroep;
+    private Long groepID;
+    private Long woordgroepID;
 
 
     public ConditieGroep(){}
-    public ConditieGroep(long id, int conditieNr, Groep groep, Woordgroep woordgroep){
+    public ConditieGroep(long id, int conditieNr, Long groepID, Long woordgroepID){
         this.id = id;
         this.conditieNr = conditieNr;
-        this.groep = groep;
-        this.woordgroep = woordgroep;
+        this.groepID = groepID;
+        this.woordgroepID = woordgroepID;
     }
 
 
@@ -31,17 +31,17 @@ public class ConditieGroep {
         this.conditieNr = conditieNr;
     }
 
-    public Groep getGroep() {
-        return groep;
+    public Long getGroepID() {
+        return groepID;
     }
-    public void setGroep(Groep groep) {
-        this.groep = groep;
+    public void setGroepID(Long groepID) {
+        this.groepID = groepID;
     }
 
-    public Woordgroep getWoordgroep() {
-        return woordgroep;
+    public Long getWoordgroepID() {
+        return woordgroepID;
     }
-    public void setWoordgroep(Woordgroep woordgroep) {
-        this.woordgroep = woordgroep;
+    public void setWoordgroepID(Long woordgroepID) {
+        this.woordgroepID = woordgroepID;
     }
 }

@@ -19,7 +19,7 @@ public class KindDataService {
         SQLiteDatabase db = dbHelper.getReadableDB();
         Cursor cursor = db.query(
                 "land",      // tabelnaam
-                new String[]{"id", "naam", "hoofdstad", "inwoners", "vlag", "oppervlakte", "munteenheid", "uitleg", "bezocht"}, // kolommen
+                new String[]{"id", "naam", "groeId"}, // kolommen
                 "id = ?",  // selectie
                 new String[]{String.valueOf(id)}, // selectieparameters
                 null,           // groupby

@@ -5,17 +5,17 @@ public class Meting {
     private long id;
     private int metingsNr;
     private int score;
-    private Woord woord;
-    private KindSessie kindSessie;
+    private Long woordID;
+    private Long kindSessieID;
 
 
     public Meting(){}
-    public Meting(long id, int metingsNr, int score, Woord woord, KindSessie kindSessie){
+    public Meting(long id, int metingsNr, int score, Long woordID, Long kindSessieID){
         this.id = id;
         this.metingsNr = metingsNr;
         this.score = score;
-        this.woord = woord;
-        this.kindSessie = kindSessie;
+        this.woordID = woordID;
+        this.kindSessieID = kindSessieID;
     }
 
 
@@ -40,17 +40,17 @@ public class Meting {
         this.score = score;
     }
 
-    public Woord getWoord() {
-        return woord;
+    public Long getWoordID() {
+        return woordID;
     }
-    public void setWoord(Woord woord) {
-        this.woord = woord;
+    public void setWoordID(Long woordID) {
+        this.woordID = woordID;
     }
 
-    public KindSessie getKindSessie() {
-        return kindSessie;
+    public Long getKindSessieID() {
+        return kindSessieID;
     }
-    public void setKindSessie(KindSessie kindSessie) {
-        this.kindSessie = kindSessie;
+    public void setKindSessieID(Long kindSessieID) {
+        this.kindSessieID = kindSessieID;
     }
 }

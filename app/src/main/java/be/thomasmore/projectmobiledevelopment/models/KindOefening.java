@@ -5,15 +5,15 @@ public class KindOefening {
     private long id;
     private int score;
     private int oefeningNr;
-    private KindSessie kindSessie;
+    private Long kindSessieID;
 
 
     public KindOefening(){}
-    public KindOefening(long id, int score, int oefeningNr, KindSessie kindSessie){
+    public KindOefening(long id, int score, int oefeningNr, Long kindSessieID){
         this.id = id;
         this.score = score;
         this.oefeningNr = oefeningNr;
-        this.kindSessie = kindSessie;
+        this.kindSessieID = kindSessieID;
     }
 
 
@@ -38,10 +38,10 @@ public class KindOefening {
         this.oefeningNr = oefeningNr;
     }
 
-    public KindSessie getKindSessie() {
-        return kindSessie;
+    public Long getKindSessieID() {
+        return kindSessieID;
     }
-    public void setKindSessie(KindSessie kindSessie) {
-        this.kindSessie = kindSessie;
+    public void setKindSessieID(Long kindSessieID) {
+        this.kindSessieID = kindSessieID;
     }
 }

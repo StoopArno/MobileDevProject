@@ -4,14 +4,14 @@ public class Kind {
 
     private long id;
     private String naam;
-    private Groep groep;
+    private Long groepID;
 
 
     public Kind(){}
-    public Kind(long id, String naam, Groep groep){
+    public Kind(long id, String naam, Long groepID){
         this.id = id;
         this.naam = naam;
-        this.groep = groep;
+        this.groepID = groepID;
     }
 
 
@@ -29,10 +29,10 @@ public class Kind {
         this.naam = naam;
     }
 
-    public Groep getGroep() {
-        return groep;
+    public Long getGroepID() {
+        return groepID;
     }
-    public void setGroep(Groep groep) {
-        this.groep = groep;
+    public void setGroepID(Long groepID) {
+        this.groepID = groepID;
     }
 }
