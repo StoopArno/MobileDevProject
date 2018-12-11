@@ -14,6 +14,10 @@ public class Kind {
         this.groepID = groepID;
     }
 
+    public String toString(){
+        return naam;
+    }
+
 
     public long getId() {
         return id;

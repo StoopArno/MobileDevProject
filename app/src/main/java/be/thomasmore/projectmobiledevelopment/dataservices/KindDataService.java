@@ -19,7 +19,7 @@ public class KindDataService {
         SQLiteDatabase db = dbHelper.getReadableDB();
         Cursor cursor = db.query(
                 "land",      // tabelnaam
-                new String[]{"id", "naam", "groeId"}, // kolommen
+                new String[]{"id", "naam", "groepID"}, // kolommen
                 "id = ?",  // selectie
                 new String[]{String.valueOf(id)}, // selectieparameters
                 null,           // groupby
@@ -34,7 +34,7 @@ public class KindDataService {
             kind = new Kind(
                     Long.parseLong(cursor.getString(0)),
                     cursor.getString(1),
-                    groepDS.getGroep(Long.parseLong(cursor.getString(4)))
+                    Long.parseLong(cursor.getString(2))
             );
         }
         cursor.close();
@@ -56,7 +56,7 @@ public class KindDataService {
                 Kind kind = new Kind(
                         cursor.getLong(0),
                         cursor.getString(1),
-                        groepDS.getGroep(Long.parseLong(cursor.getString(2)))
+                        Long.parseLong(cursor.getString(2))
                 );
                 lijst.add(kind);
             } while (cursor.moveToNext());
