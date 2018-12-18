@@ -10,7 +10,6 @@ public class Groep {
         this.id = id;
     }
 
-
     public long getId() {
         return id;
     }

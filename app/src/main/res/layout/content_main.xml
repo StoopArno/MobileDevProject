@@ -33,12 +33,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Meting"
-            android:onClick="onClickKinderen"/>
+            android:onClick="onClickMeting"/>
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Overzicht resultaten"
-            android:onClick="onClickKinderen"/>
+            android:text="Overzicht resultaten"/>
     </LinearLayout>
 
 
