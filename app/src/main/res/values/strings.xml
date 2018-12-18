@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name">Project Mobile Development</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_kinderen">ActivityKinderen</string>
-<<<<<<< HEAD
-    <string name="title_activity_kanker">ActivityKanker</string>
+    <string name="title_activity_kinderen">Overzicht kinderen</string>
     <string name="title_activity_meting">ActivityMeting</string>
-=======
-    <string name="title_activity_kinderen_edit">KinderenEdit</string>
->>>>>>> 9d412caddd4d5010ba2ee9010c00b1face9d5e9b
+    <string name="title_activity_kinderen_edit">Aanpassen kind</string>
 </resources>
