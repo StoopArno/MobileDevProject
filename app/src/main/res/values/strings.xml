@@ -2,4 +2,6 @@
     <string name="app_name">Project Mobile Development</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_kinderen">ActivityKinderen</string>
+    <string name="title_activity_kanker">ActivityKanker</string>
+    <string name="title_activity_meting">ActivityMeting</string>
 </resources>
