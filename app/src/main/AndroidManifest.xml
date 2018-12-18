@@ -26,8 +26,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.ActivityMeting"
-            android:label="@string/title_activity_meting"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/title_activity_meting"/>
+        <activity
+            android:name=".activities.KinderenEdit"
+            android:label="@string/title_activity_kinderen_edit"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

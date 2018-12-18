@@ -137,6 +137,6 @@ public class ActivityMeting extends AppCompatActivity {
 
     //antwoord nakijken
     private void checkReply(String id){
-        
+
     }
 }

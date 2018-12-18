@@ -2,6 +2,7 @@ package be.thomasmore.projectmobiledevelopment;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import be.thomasmore.projectmobiledevelopment.models.Groep;
@@ -108,6 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertWoordGroep(db);
         insertWoord(db);
         insertConditieGroep(db);
+        isnertTestKinderen(db);
     }
 
     //functies voor het wegschrijven van data
@@ -158,6 +160,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO conditiegroep (conditieNr, groepID, woordGroepID) VALUES(3, 1, 3)");
         db.execSQL("INSERT INTO conditiegroep (conditieNr, groepID, woordGroepID) VALUES(3, 2, 2)");
         db.execSQL("INSERT INTO conditiegroep (conditieNr, groepID, woordGroepID) VALUES(3, 3, 1)");
+    }
+
+    private void isnertTestKinderen(SQLiteDatabase db){
+        db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('testKind1', 1)");
+        db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('testKind2', 1)");
     }
 
     @Override
