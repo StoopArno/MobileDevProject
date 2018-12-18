@@ -2,6 +2,7 @@ package be.thomasmore.projectmobiledevelopment.dataservices;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class KindDataService {
     public Kind getKind(long id){
         SQLiteDatabase db = dbHelper.getReadableDB();
         Cursor cursor = db.query(
-                "land",      // tabelnaam
+                "kind",      // tabelnaam
                 new String[]{"id", "naam", "groepID"}, // kolommen
                 "id = ?",  // selectie
                 new String[]{String.valueOf(id)}, // selectieparameters
@@ -65,5 +66,38 @@ public class KindDataService {
         cursor.close();
         db.close();
         return lijst;
+    }
+
+    public void addKind(Kind kind){
+        SQLiteDatabase db = dbHelper.getWriteableDB();
+        String sql = "INSERT INTO kind (naam, groepID) VALUES (?, ?)";
+        SQLiteStatement statement = db.compileStatement(sql);
+
+        statement.bindString(1, kind.getNaam());
+        statement.bindLong(2, kind.getGroepID());
+
+        statement.executeInsert();
+    }
+
+    public void updatekind(Kind kind){
+        SQLiteDatabase db = dbHelper.getWriteableDB();
+        String sql = "UPDATE kind SET naam=?, groepID=? WHERE id=?";
+        SQLiteStatement statement = db.compileStatement(sql);
+
+        statement.bindString(1, kind.getNaam());
+        statement.bindLong(2, kind.getGroepID());
+        statement.bindLong(3, kind.getId());
+
+        statement.executeUpdateDelete();
+    }
+
+    public void deleteKind(Long id){
+        SQLiteDatabase db = dbHelper.getWriteableDB();
+        String sql = "DELETE FROM kind WHERE id=?";
+        SQLiteStatement statement = db.compileStatement(sql);
+
+        statement.bindLong(1, id);
+
+        statement.executeUpdateDelete();
     }
 }
