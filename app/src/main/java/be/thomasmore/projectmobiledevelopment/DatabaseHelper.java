@@ -60,17 +60,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_KINDOEFENING = "CREATE TABLE kindoefening (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "sessieID INTEGER," +
+                "woordID INTEGER," +
                 "oefeningNr INTEGER," +
                 "score INTEGER," +
+                "FOREIGN KEY (woordID) REFERENCES woord(id)," +
                 "FOREIGN KEY (sessieID) REFERENCES kindsessie(id))";
         db.execSQL(CREATE_TABLE_KINDOEFENING);
 
         String CREATE_TABLE_KINDSESSIE = "CREATE TABLE kindsessie (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "kindID INTEGER," +
-                "woordGroepID INTEGER," +
-                "FOREIGN KEY (kindID) REFERENCES kind(id)," +
-                "FOREIGN KEY (woordGroepID) REFERENCES woordgroep(id))";
+                "FOREIGN KEY (kindID) REFERENCES kind(id))";
         db.execSQL(CREATE_TABLE_KINDSESSIE);
 
         String CREATE_TABLE_LETTERGREEP = "CREATE TABLE lettergreep (" +

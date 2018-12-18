@@ -3,11 +3,13 @@ package be.thomasmore.projectmobiledevelopment.models;
 public class Woordgroep {
 
     private long id;
+    private String woordgroep;
 
 
     public Woordgroep(){}
-    public Woordgroep(long id){
+    public Woordgroep(long id, String woordgroep){
         this.id = id;
+        this.woordgroep = woordgroep;
     }
 
 
@@ -16,5 +18,13 @@ public class Woordgroep {
     }
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getWoordgroep() {
+        return woordgroep;
+    }
+
+    public void setWoordgroep(String woordgroep) {
+        this.woordgroep = woordgroep;
     }
 }

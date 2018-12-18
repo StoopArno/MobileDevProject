@@ -4,14 +4,12 @@ public class KindSessie {
 
     private long id;
     private Long kindID;
-    private Long woordgroepID;
 
 
     public KindSessie(){}
-    public KindSessie(long id, Long kindID, Long woordgroepID){
+    public KindSessie(long id, Long kindID){
         this.id = id;
         this.kindID = kindID;
-        this.woordgroepID = woordgroepID;
     }
 
 
@@ -27,12 +25,5 @@ public class KindSessie {
     }
     public void setKindID(Long kindID) {
         this.kindID = kindID;
-    }
-
-    public Long getWoordgroepID() {
-        return woordgroepID;
-    }
-    public void setWoordgroepID(Long woordgroepID) {
-        this.woordgroepID = woordgroepID;
     }
 }
