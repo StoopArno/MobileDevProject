@@ -1,14 +1,21 @@
 package be.thomasmore.projectmobiledevelopment.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +48,23 @@ public class KinderenEdit extends AppCompatActivity {
         vulVelden();
     }
 
+    public void onClickSave(View v){
+        EditText editText = (EditText) findViewById(R.id.editKindNaam);
+        Spinner dropdownGroep = (Spinner) findViewById(R.id.editKindGroep);
+        kind.setNaam(editText.getText().toString());
+        kind.setGroepID(dropdownGroep.getSelectedItemId() + 1);
+
+        if(kind.getId() == 0){
+            kindDataService.addKind(kind);
+        } else{
+            kindDataService.updatekind(kind);
+        }
+        Intent intent = new Intent(this, ActivityKinderen.class);
+        startActivity(intent);
+    }
+
     private void vulVelden(){
-        TextView textViewNaam = (TextView) findViewById(R.id.editKindNaam);
+        EditText editViewNaam = (EditText) findViewById(R.id.editKindNaam);
         Spinner dropdownGroep = (Spinner) findViewById(R.id.editKindGroep);
 
         List<String> dropdownItems = new ArrayList<String>();
@@ -51,10 +73,11 @@ public class KinderenEdit extends AppCompatActivity {
             dropdownItems.add("Groep " + groep.getId());
         }
 
-        textViewNaam.setText(kind.getNaam());
+        editViewNaam.setText(kind.getNaam());
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, dropdownItems);
-        //set the spinners adapter to the previously created one.
-        dropdownGroep.setAdapter(adapter);
-    }
 
+        dropdownGroep.setAdapter(adapter);
+        Integer i = kind.getGroepID() != null ? kind.getGroepID().intValue() : 1;
+        dropdownGroep.setSelection(i-1);
+    }
 }

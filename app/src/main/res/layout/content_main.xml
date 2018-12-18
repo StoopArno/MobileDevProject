@@ -8,14 +8,38 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Kinderen"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="onClickKinderen"/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:text="De meeste van deze knoppen zullen nog vervangen en/of veranderd worden door de juiste dingen zodat het verloop van de app correct is. De reden dat de knoppen zo staan is zodat wij deze gemakkelijker kunnen testen."/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Kinderen"
+            android:onClick="onClickKinderen"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Meting"
+            android:onClick="onClickKinderen"/>
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Overzicht resultaten"
+            android:onClick="onClickKinderen"/>
+    </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

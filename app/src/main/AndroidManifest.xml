@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="be.thomasmore.projectmobiledevelopment">
-
+    <uses-sdk android:minSdkVersion="15"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -23,11 +23,21 @@
         <activity
             android:name=".activities.ActivityKinderen"
             android:label="@string/title_activity_kinderen"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.thomasmore.projectmobiledevelopment.MainActivity" />
+        </activity>
         <activity
             android:name=".activities.KinderenEdit"
             android:label="@string/title_activity_kinderen_edit"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".activities.ActivityKinderen">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="be.thomasmore.projectmobiledevelopment.activities.ActivityKinderen" />
+        </activity>
     </application>
 
 </manifest>
