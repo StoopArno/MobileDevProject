@@ -83,6 +83,10 @@ public class ActivityKinderen extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void startSessie(long kindID){
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

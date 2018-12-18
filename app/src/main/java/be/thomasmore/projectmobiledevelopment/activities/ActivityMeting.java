@@ -76,7 +76,7 @@ public class ActivityMeting extends AppCompatActivity {
         for (int i = 0; i < 3; i++) {
             Woord image = getRandomImage(alleWoorden);
 
-            while (image == this.woord) {
+            while (image == this.woord && !this.images.contains(image)) {
                 image = getRandomImage(alleWoorden);
             }
 
