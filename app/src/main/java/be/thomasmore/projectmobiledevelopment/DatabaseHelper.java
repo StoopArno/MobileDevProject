@@ -84,11 +84,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_METING = "CREATE TABLE meting (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "metingNr INTEGER," +
-                "score INTEGER," +
+                "juist INTEGER," +
                 "woordID INTEGER," +
                 "sessieID INTEGER," +
                 "FOREIGN KEY (woordID) REFERENCES woord(id)," +
-                "FOREIGN KEY (sessieID) REFERENCES sessie(id))";
+                "FOREIGN KEY (sessieID) REFERENCES kindsessie(id))";
         db.execSQL(CREATE_TABLE_METING);
 
         String CREATE_TABLE_WOORD = "CREATE TABLE woord (" +
@@ -170,6 +170,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS conditiegroep");
+        db.execSQL("DROP TABLE IF EXISTS meting");
 
         // Create tables again
         onCreate(db);

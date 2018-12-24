@@ -20,12 +20,17 @@ import java.util.Random;
 
 import be.thomasmore.projectmobiledevelopment.MainActivity;
 import be.thomasmore.projectmobiledevelopment.R;
+import be.thomasmore.projectmobiledevelopment.dataservices.MetingDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.WoordDataService;
+import be.thomasmore.projectmobiledevelopment.models.Kind;
+import be.thomasmore.projectmobiledevelopment.models.KindSessie;
+import be.thomasmore.projectmobiledevelopment.models.Meting;
 import be.thomasmore.projectmobiledevelopment.models.Woord;
 
 public class ActivityMeting extends AppCompatActivity {
 
     //woorden
+    private Long kindSessieID;
     private Woord testWoord;
     private Woord woord;
     private List<Woord> woorden;
@@ -38,10 +43,12 @@ public class ActivityMeting extends AppCompatActivity {
 
     //andere
     List<Woord> images = new ArrayList<>();
+    private int metingNr;
     private int teller = 0;
 
     //dataservice
     private WoordDataService woordDataService = new WoordDataService();
+    private MetingDataService metingDataService = new MetingDataService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +63,27 @@ public class ActivityMeting extends AppCompatActivity {
         TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
         textViewWoord.setText(this.testWoord.getWoord());
 
+        this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
+        this.metingNr = getIntent().getIntExtra("metingNr", 1);
+        Log.d("test", kindSessieID.toString());
+
         getImages(teller);
         maakLayout();
     }
 
     //lijst met 4 images aanmaken (3 random, en de image met het juiste woord)
     private void getImages(int teller) {
+        this.images.clear();
+
         //juiste woord ophalen
         if (this.teller == 0) {
             this.woord = this.testWoord;
         } else {
-            this.woord = this.woorden.get(teller);
+            this.woord = this.woorden.get(teller-1);
+            Log.d("test", this.woord.getWoord());
+
+            TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+            textViewWoord.setText(this.woord.getWoord());
         }
 
         //random images ophalen
@@ -116,8 +133,6 @@ public class ActivityMeting extends AppCompatActivity {
                 imageView.setLayoutParams(imageLayoutParams);
                 imageView.setTag(this.images.get(k).getId());
 
-                Log.d("test", this.images.get(k).getWoord());
-
                 imageView.setImageResource(R.drawable.duikbril);
                 imageView.setImageResource(getResources().getIdentifier(this.images.get(k).getWoord().toLowerCase(), "drawable", getPackageName()));
 
@@ -136,7 +151,30 @@ public class ActivityMeting extends AppCompatActivity {
     }
 
     //antwoord nakijken
-    private void checkReply(String id){
+    private void checkReply(String woordID){
+        boolean juist = false;
 
+        Long juisteWoordID = this.woord.getId();
+
+        if(juisteWoordID.toString().equals(woordID)){
+            juist = true;
+        }
+
+        //antwoord wegschrijven
+        metingDataService.addMeting(this.kindSessieID, this.woord.getId(), juist, this.metingNr);
+
+        //checken of er nog een woord is
+        if(teller != 9){
+            //doorgaan voor een ander woord
+            LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
+            mainLayout.removeAllViews();
+
+            teller = teller + 1;
+            getImages(teller);
+            maakLayout();
+        }else{
+            //verder gaan in de flow van de app
+            Log.d("test", "we gaan verder");
+        }
     }
 }
