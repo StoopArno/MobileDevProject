@@ -74,9 +74,9 @@ public class Oef2 extends AppCompatActivity {
         kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 2, score);
 
         //verder gaan in de flow van de app
-        //Intent intent = new Intent(this, Oef3.class);
-        //intent.putExtra("kindSessieID", this.kindSessieID);
-        //intent.putExtra("woordID", this.woord.getId());
-        //startActivity(intent);
+        Intent intent = new Intent(this, Oef3.class);
+        intent.putExtra("kindSessieID", this.kindSessieID);
+        intent.putExtra("woordID", this.woord.getId());
+        startActivity(intent);
     }
 }
