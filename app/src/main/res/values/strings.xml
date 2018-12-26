@@ -4,4 +4,6 @@
     <string name="title_activity_kinderen">Overzicht kinderen</string>
     <string name="title_activity_meting">ActivityMeting</string>
     <string name="title_activity_kinderen_edit">Aanpassen kind</string>
+    <string name="title_activity_oef1">Oef1</string>
+    <string name="title_activity_oef2">Oef2</string>
 </resources>

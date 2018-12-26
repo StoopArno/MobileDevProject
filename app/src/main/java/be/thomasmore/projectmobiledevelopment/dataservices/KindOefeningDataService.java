@@ -6,23 +6,20 @@ import android.util.Log;
 
 import be.thomasmore.projectmobiledevelopment.App;
 import be.thomasmore.projectmobiledevelopment.DatabaseHelper;
-import be.thomasmore.projectmobiledevelopment.models.KindSessie;
 
-public class MetingDataService {
+public class KindOefeningDataService {
 
     private DatabaseHelper dbHelper = DatabaseHelper.getInstance(App.getAppContext());
 
-    public void addMeting(Long kindSessieID, Long woordID, boolean juist, int metingNr){
+    public void addKindOefening(Long kindSessieID, Long woordID, int oefeningNr, int score){
         SQLiteDatabase db = dbHelper.getWriteableDB();
-        String sql = "INSERT INTO meting (metingNr, juist, woordID, sessieID) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO kindoefening (sessieID, woordID, oefeningNr, score) VALUES (?, ?, ?, ?)";
         SQLiteStatement statement = db.compileStatement(sql);
 
-        int juistID = (juist)? 1 : 0;
-
-        statement.bindLong(1, metingNr);
-        statement.bindLong(2, juistID);
-        statement.bindLong(3, woordID);
-        statement.bindLong(4, kindSessieID);
+        statement.bindLong(1, kindSessieID);
+        statement.bindLong(2, woordID);
+        statement.bindLong(3, oefeningNr);
+        statement.bindLong(4, score);
 
         statement.executeInsert();
     }

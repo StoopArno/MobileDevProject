@@ -1,6 +1,7 @@
 package be.thomasmore.projectmobiledevelopment.activities;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -80,7 +81,6 @@ public class ActivityMeting extends AppCompatActivity {
             this.woord = this.testWoord;
         } else {
             this.woord = this.woorden.get(teller-1);
-            Log.d("test", this.woord.getWoord());
 
             TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
             textViewWoord.setText(this.woord.getWoord());
@@ -150,6 +150,11 @@ public class ActivityMeting extends AppCompatActivity {
         }
     }
 
+    public void playAudio(View v){
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "raw", getPackageName()));
+        mediaPlayer.start();
+    }
+
     //antwoord nakijken
     private void checkReply(String woordID){
         boolean juist = false;
@@ -173,8 +178,15 @@ public class ActivityMeting extends AppCompatActivity {
             getImages(teller);
             maakLayout();
         }else{
-            //verder gaan in de flow van de app
-            Log.d("test", "we gaan verder");
+            //afhankelijk of het voor of -nameting is navigeren we verder in de app
+            if(this.metingNr == 1){
+                //verder gaan in de flow van de app
+                Intent intent = new Intent(this, Oef1.class);
+                intent.putExtra("kindSessieID", this.kindSessieID);
+                Long id = Long.valueOf(10); //we beginnen altijd met woord 10
+                intent.putExtra("woordID", id);
+                startActivity(intent);
+            }
         }
     }
 }
