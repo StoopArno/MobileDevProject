@@ -60,17 +60,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_KINDOEFENING = "CREATE TABLE kindoefening (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "sessieID INTEGER," +
+                "woordID INTEGER," +
                 "oefeningNr INTEGER," +
                 "score INTEGER," +
+                "FOREIGN KEY (woordID) REFERENCES woord(id)," +
                 "FOREIGN KEY (sessieID) REFERENCES kindsessie(id))";
         db.execSQL(CREATE_TABLE_KINDOEFENING);
 
         String CREATE_TABLE_KINDSESSIE = "CREATE TABLE kindsessie (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "kindID INTEGER," +
-                "woordGroepID INTEGER," +
-                "FOREIGN KEY (kindID) REFERENCES kind(id)," +
-                "FOREIGN KEY (woordGroepID) REFERENCES woordgroep(id))";
+                "FOREIGN KEY (kindID) REFERENCES kind(id))";
         db.execSQL(CREATE_TABLE_KINDSESSIE);
 
         String CREATE_TABLE_LETTERGREEP = "CREATE TABLE lettergreep (" +
@@ -84,11 +84,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String CREATE_TABLE_METING = "CREATE TABLE meting (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "metingNr INTEGER," +
-                "score INTEGER," +
+                "juist INTEGER," +
                 "woordID INTEGER," +
                 "sessieID INTEGER," +
                 "FOREIGN KEY (woordID) REFERENCES woord(id)," +
-                "FOREIGN KEY (sessieID) REFERENCES sessie(id))";
+                "FOREIGN KEY (sessieID) REFERENCES kindsessie(id))";
         db.execSQL(CREATE_TABLE_METING);
 
         String CREATE_TABLE_WOORD = "CREATE TABLE woord (" +
@@ -103,13 +103,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "woordGroep TEXT)";
         db.execSQL(CREATE_TABLE_WOORDGROEP);
 
+        String CREATE_TABLE_CONTEXTJUIST = "CREATE TABLE contextjuist (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "woordID INTEGER," +
+                "zin TEXT," +
+                "FOREIGN KEY (woordID) REFERENCES woord(id))";
+        db.execSQL(CREATE_TABLE_CONTEXTJUIST);
+
+        String CREATE_TABLE_CONTEXTFOUT = "CREATE TABLE contextfout (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "woordID INTEGER," +
+                "zin TEXT," +
+                "FOREIGN KEY (woordID) REFERENCES woord(id))";
+        db.execSQL(CREATE_TABLE_CONTEXTFOUT);
+
         //wegschrijven data
         insertGroep(db);
         insertLetterGreep(db);
         insertWoordGroep(db);
         insertWoord(db);
         insertConditieGroep(db);
-        isnertTestKinderen(db);
+        insertTestKinderen(db);
+        insertContextJuist(db);
+        insertContextFout(db);
     }
 
     //functies voor het wegschrijven van data
@@ -162,15 +178,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO conditiegroep (conditieNr, groepID, woordGroepID) VALUES(3, 3, 1)");
     }
 
-    private void isnertTestKinderen(SQLiteDatabase db){
+    private void insertTestKinderen(SQLiteDatabase db){
         db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('Tom Nuyts', 1)");
         db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('Bram Bergen', 2)");
+
+    }
+
+    private void insertContextJuist(SQLiteDatabase db){
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (1, 'In de turnzaal klim ik omhoog in het klimtouw. ')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (2, 'De vijver is groen door het kroos. ')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (3, 'De eenden zitten bij het water tussen het riet')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (4, 'Wat was dat een pijnlijke val!')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (5, 'Omdat papa niet weet waar we naartoe moeten lopen, kijkt hij op zijn kompas. ')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (6, 'Jan loopt de steile berg omhoog.')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (7, 'In de vijver in het park zwemt een witte zwaan.')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (8, 'De kinderen zitten te eten tussen de tenten van het kamp.')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (9, 'De jongen schijnt met de zaklamp in de donkere grot.')");
+        db.execSQL("INSERT INTO contextjuist (woordID, zin) VALUES (10, 'Met zijn duikbril kan de jongen de vissen onder water goed bekijken.')");
+    }
+
+    private void insertContextFout(SQLiteDatabase db){
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (1, 'Met een duikbril kan ik schrijven op papier.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (2, 'Ik wacht op de bus in het klimtouw.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (3, 'Oma en het kroos zitten in de auto.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (4, 'Ik ga naar buiten met mijn jas en het riet aan.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (5, 'Jan zit op de val aan tafel.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (6, 'Mama belt met het kompas naar papa.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (7, 'Papa leest een steil verhaaltje voor. ')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (8, 'De zwaan fietst in het park. ')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (9, 'Jonas wast zich met het kamp.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (10, 'Jef opent de deur met de zaklamp.')");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS conditiegroep");
-
         // Create tables again
         onCreate(db);
     }

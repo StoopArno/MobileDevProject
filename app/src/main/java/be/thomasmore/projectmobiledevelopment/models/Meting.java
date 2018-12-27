@@ -4,16 +4,16 @@ public class Meting {
 
     private long id;
     private int metingsNr;
-    private int score;
+    private boolean juist;
     private Long woordID;
     private Long kindSessieID;
 
 
     public Meting(){}
-    public Meting(long id, int metingsNr, int score, Long woordID, Long kindSessieID){
+    public Meting(long id, int metingsNr, boolean juist, Long woordID, Long kindSessieID){
         this.id = id;
         this.metingsNr = metingsNr;
-        this.score = score;
+        this.juist = juist;
         this.woordID = woordID;
         this.kindSessieID = kindSessieID;
     }
@@ -33,11 +33,12 @@ public class Meting {
         this.metingsNr = metingsNr;
     }
 
-    public int getScore() {
-        return score;
+    public boolean isJuist() {
+        return juist;
     }
-    public void setScore(int score) {
-        this.score = score;
+
+    public void setJuist(boolean juist) {
+        this.juist = juist;
     }
 
     public Long getWoordID() {

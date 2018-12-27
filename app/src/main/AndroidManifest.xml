@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="be.thomasmore.projectmobiledevelopment">
-    <uses-sdk android:minSdkVersion="15"/>
+
+    <uses-sdk android:minSdkVersion="15" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -23,8 +29,8 @@
         <activity
             android:name=".activities.ActivityKinderen"
             android:label="@string/title_activity_kinderen"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="be.thomasmore.projectmobiledevelopment.MainActivity" />
@@ -32,16 +38,28 @@
         <activity
             android:name=".activities.ActivityMeting"
             android:label="@string/title_activity_meting"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.KinderenEdit"
             android:label="@string/title_activity_kinderen_edit"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".activities.ActivityKinderen">
+            android:parentActivityName=".activities.ActivityKinderen"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="be.thomasmore.projectmobiledevelopment.activities.ActivityKinderen" />
         </activity>
+        <activity
+            android:name=".activities.Oef1"
+            android:label="@string/title_activity_oef1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Oef2"
+            android:label="@string/title_activity_oef2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Oef3"
+            android:label="@string/title_activity_oef3"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

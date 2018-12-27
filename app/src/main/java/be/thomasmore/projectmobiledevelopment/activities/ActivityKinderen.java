@@ -23,11 +23,14 @@ import be.thomasmore.projectmobiledevelopment.MainActivity;
 import be.thomasmore.projectmobiledevelopment.R;
 import be.thomasmore.projectmobiledevelopment.adapters.KinderenListAdapter;
 import be.thomasmore.projectmobiledevelopment.dataservices.KindDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.SessieDataService;
 import be.thomasmore.projectmobiledevelopment.models.Kind;
+import be.thomasmore.projectmobiledevelopment.models.KindSessie;
 
 public class ActivityKinderen extends AppCompatActivity {
 
     private KindDataService kindDataService = new KindDataService();
+    private SessieDataService sessieDataService = new SessieDataService();
 
     public void vulListView(){
         View.OnClickListener editListener = new View.OnClickListener() {
@@ -47,7 +50,9 @@ public class ActivityKinderen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("test", "onClick: ROOT" + v.getTag());
-                Toast.makeText(App.getAppContext(), "Vanuit deze knop zal je een sessie met een kind kunnen starten", Toast.LENGTH_LONG).show();
+                long kindId = (long)v.getTag();
+                startSessie(kindId);
+                //Toast.makeText(App.getAppContext(), "Vanuit deze knop zal je een sessie met een kind kunnen starten", Toast.LENGTH_LONG).show();
             }
         };
 
@@ -84,7 +89,15 @@ public class ActivityKinderen extends AppCompatActivity {
     }
 
     private void startSessie(long kindID){
+        KindSessie kindSessie = new KindSessie();
+        kindSessie.setKindID(kindID);
 
+        Long id = sessieDataService.addSessie(kindSessie);
+
+        Intent intent = new Intent(this, ActivityMeting.class);
+        intent.putExtra("kindSessieID", id);
+        intent.putExtra("metingNr", 1);
+        startActivity(intent);
     }
 
     @Override
