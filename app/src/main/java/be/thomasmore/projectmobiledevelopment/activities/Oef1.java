@@ -61,6 +61,7 @@ public class Oef1 extends AppCompatActivity {
         mainLayout.addView(imageView);
     }
 
+    //audio afspelen
     public void playAudio(View v){
         MediaPlayer mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier("def" + this.woord.getWoord().toLowerCase(), "raw", getPackageName()));
         mediaPlayer.start();

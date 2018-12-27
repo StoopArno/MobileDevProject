@@ -197,16 +197,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void insertContextFout(SQLiteDatabase db){
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (1, 'Met een duikbril kan ik schrijven op papier.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (2, 'Ik wacht op de bus in het klimtouw.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (3, 'Oma en het kroos zitten in de auto.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (4, 'Ik ga naar buiten met mijn jas en het riet aan.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (5, 'Jan zit op de val aan tafel.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (6, 'Mama belt met het kompas naar papa.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (7, 'Papa leest een steil verhaaltje voor. ')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (8, 'De zwaan fietst in het park. ')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (1, 'Ik wacht op de bus in het klimtouw.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (2, 'Oma en het kroos zitten in de auto.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (3, 'Ik ga naar buiten met mijn jas en het riet aan.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (4, 'Jan zit op de val aan tafel.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (5, 'Mama belt met het kompas naar papa.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (6, 'Papa leest een steil verhaaltje voor. ')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (7, 'De zwaan fietst in het park. ')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (9, 'Jonas wast zich met het kamp.')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (10, 'Jef opent de deur met de zaklamp.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (9, 'Jef opent de deur met de zaklamp.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (10, 'Met een duikbril kan ik schrijven op papier.')");
     }
 
     @Override

@@ -57,19 +57,23 @@ public class Oef2 extends AppCompatActivity {
         mainLayout.addView(imageView);
     }
 
+    //audio afspelen
     public void playAudio(View v){
         MediaPlayer mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier("zeg" + this.woord.getWoord().toLowerCase(), "raw", getPackageName()));
         mediaPlayer.start();
     }
 
+    //als het kind juist antwoord
     public void onClickJuist(View v){
         schrijfWeg(1);
     }
 
+    //als het kind fout antwoord
     public void onClickFout(View v){
         schrijfWeg(0);
     }
 
+    //antwoord wegschrijven
     private void schrijfWeg(int score){
         kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 2, score);
 
