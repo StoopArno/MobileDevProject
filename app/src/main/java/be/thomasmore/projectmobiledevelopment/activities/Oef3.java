@@ -70,6 +70,7 @@ public class Oef3 extends AppCompatActivity {
         textViewWoord.setText(this.zin);
     }
 
+    //de andere zin nemen, afhankelijk van of de eerste juist of fout was
     private void andereZin(){
         if(this.juistOfFout == 0){
             this.juistOfFout = 1;
@@ -91,10 +92,12 @@ public class Oef3 extends AppCompatActivity {
         mediaPlayer.start();
     }
 
+    //audio als het kind juist antwoord dat de zin juist is
     private void audioJuistZin(){
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.goedezin);
         mediaPlayer.start();
         if(!this.zinCheck){
+            //wachten op deze audio om af te spelen voor we vragen om opnieuw te doen
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
@@ -105,10 +108,12 @@ public class Oef3 extends AppCompatActivity {
         }
     }
 
+    //audio als het kind juist antwoord dat de zin fout is
     private void audioFouteZin(){
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.foutezin);
         mediaPlayer.start();
         if(!this.zinCheck){
+            //wachten op deze audio om af te spelen voor we vragen om opnieuw te doen
             mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mediaPlayer) {
@@ -119,6 +124,7 @@ public class Oef3 extends AppCompatActivity {
         }
     }
 
+    //audio als het kind fout antwoord
     private void audioFoutAntwoord(){
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.foutantwoord);
         mediaPlayer.start();

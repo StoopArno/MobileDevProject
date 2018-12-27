@@ -204,7 +204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (5, 'Mama belt met het kompas naar papa.')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (6, 'Papa leest een steil verhaaltje voor. ')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (7, 'De zwaan fietst in het park. ')");
-        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (9, 'Jonas wast zich met het kamp.')");
+        db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (8, 'Jonas wast zich met het kamp.')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (9, 'Jef opent de deur met de zaklamp.')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (10, 'Met een duikbril kan ik schrijven op papier.')");
     }
