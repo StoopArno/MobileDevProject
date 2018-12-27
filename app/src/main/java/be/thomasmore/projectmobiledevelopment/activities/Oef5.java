@@ -2,6 +2,8 @@ package be.thomasmore.projectmobiledevelopment.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -23,25 +25,26 @@ import java.util.List;
 import be.thomasmore.projectmobiledevelopment.App;
 import be.thomasmore.projectmobiledevelopment.R;
 import be.thomasmore.projectmobiledevelopment.dataservices.AssociatieDataService;
-import be.thomasmore.projectmobiledevelopment.dataservices.ContextDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.KindOefeningDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.WoordAfbeeldingDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.WoordDataService;
 import be.thomasmore.projectmobiledevelopment.models.AssociatieWoord;
 import be.thomasmore.projectmobiledevelopment.models.Woord;
+import be.thomasmore.projectmobiledevelopment.models.WoordAfbeelding;
 
-public class Oef4 extends AppCompatActivity {
+public class Oef5 extends AppCompatActivity {
 
     //woorden
     private Long kindSessieID;
     private Woord woord;
-    private List<AssociatieWoord> associatieList = new ArrayList<>();
+    private List<WoordAfbeelding> afbeeldingList = new ArrayList<>();
     private List<String> prenten = new ArrayList<>();
     int score = 0;
 
     //dataservice
     private WoordDataService woordDataService = new WoordDataService();
     private KindOefeningDataService kindOefeningDataService = new KindOefeningDataService();
-    private AssociatieDataService associatieDataService = new AssociatieDataService();
+    private WoordAfbeeldingDataService woordAfbeeldingDataService = new WoordAfbeeldingDataService();
 
     //voor layout
     int KOLOM = 2;
@@ -52,7 +55,7 @@ public class Oef4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oef4);
+        setContentView(R.layout.activity_oef5);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -60,32 +63,16 @@ public class Oef4 extends AppCompatActivity {
         Long woordID = getIntent().getLongExtra("woordID", 0);
         this.woord = woordDataService.getWoord(woordID);
 
-        this.associatieList = associatieDataService.getAssociatieByWoord(this.woord.getId());
+        this.afbeeldingList = woordAfbeeldingDataService.getAfbeeldingenByWoord(this.woord.getId());
 
         TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
         textViewWoord.setText(this.woord.getWoord());
 
-        maakLayoutTop();
-        maakLayoutBottom();
+        maakLayout();
     }
 
     //de layout maken
-    private void maakLayoutTop(){
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
-        ImageView imageView = new ImageView(this);
-
-        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(200, 200);
-        imageLayoutParams.leftMargin = 10;
-        imageLayoutParams.topMargin = 10;
-        imageLayoutParams.rightMargin = 10;
-        imageView.setLayoutParams(imageLayoutParams);
-        imageView.setTag(this.woord.getId());
-
-        imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
-        mainLayout.addView(imageView);
-    }
-
-    private void maakLayoutBottom(){
+    private void maakLayout() {
         int k = 0;
         LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_bottom);
         for (int i = 0; i < RIJ; i++) {
@@ -93,30 +80,21 @@ public class Oef4 extends AppCompatActivity {
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
             linearLayout.setLayoutParams(
                     new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT));
-            linearLayout.setWeightSum(2);
+                            ViewGroup.LayoutParams.WRAP_CONTENT));
             mainLayout.addView(linearLayout);
             for (int j = 0; j < KOLOM; j++) {
-                RelativeLayout relativeLayout = new RelativeLayout(this);
-                relativeLayout.setLayoutParams(
-                        new RelativeLayout.LayoutParams(500,
-                        ViewGroup.LayoutParams.MATCH_PARENT));
+                final ImageView imageView = new ImageView(this);
 
-                ImageView imageView = new ImageView(this);
-                final TextView textViewAssociate = new TextView(this);
-
-                LinearLayout.LayoutParams imageLayoutParams =
+                final LinearLayout.LayoutParams imageLayoutParams =
                         new LinearLayout.LayoutParams(500, 500);
-                //imageLayoutParams.leftMargin = 500;
-                //imageLayoutParams.rightMargin = 500;
+                imageLayoutParams.leftMargin = 10;
+                imageLayoutParams.topMargin = 10;
+                imageLayoutParams.rightMargin = 10;
                 imageView.setLayoutParams(imageLayoutParams);
-                imageView.setTag(this.associatieList.get(k).getId());
-                textViewAssociate.setText(this.associatieList.get(k).getWoord());
-
-                final int color = textViewAssociate.getCurrentTextColor();
+                imageView.setTag(this.afbeeldingList.get(k).getId());
 
                 imageView.setImageResource(R.drawable.duikbril);
-                imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase() + associatieList.get(k).getAfbeeldingNr(), "drawable", getPackageName()));
+                imageView.setImageResource(getResources().getIdentifier("jf" + this.woord.getWoord().toLowerCase() + this.afbeeldingList.get(k).getAfbeeldingNr(), "drawable", getPackageName()));
 
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -124,10 +102,10 @@ public class Oef4 extends AppCompatActivity {
                         if(!prenten.contains(v.getTag().toString()) && prenten.size() == 3){
                             Toast.makeText(App.getAppContext(), "Er zijn al 3 prenten gekozen", Toast.LENGTH_LONG).show();
                         }else{
-                            if(textViewAssociate.getCurrentTextColor() != Color.parseColor("#00b200")){
-                                textViewAssociate.setTextColor(Color.parseColor("#00b200"));
+                            if(prenten.contains(v.getTag().toString())){
+                                imageView.setColorFilter(null);
                             }else{
-                                textViewAssociate.setTextColor(color);
+                                imageView.setColorFilter(Color.GREEN, PorterDuff.Mode.LIGHTEN);
                             }
                             toggleAfbeelding(v.getTag().toString());
                         }
@@ -136,16 +114,14 @@ public class Oef4 extends AppCompatActivity {
 
                 this.imagesView[k] = imageView;
                 k++;
-                relativeLayout.addView(imageView);
-                relativeLayout.addView(textViewAssociate);
-                linearLayout.addView(relativeLayout);
+                linearLayout.addView(imageView);
             }
         }
     }
 
     //audio afspelen
     public void playAudio(View v){
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier("prent" + this.woord.getWoord().toLowerCase(), "raw", getPackageName()));
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier("prenten" + this.woord.getWoord().toLowerCase(), "raw", getPackageName()));
         mediaPlayer.start();
     }
 
@@ -163,9 +139,9 @@ public class Oef4 extends AppCompatActivity {
         boolean isJuist = true;
 
         for(String tag : prenten){
-            AssociatieWoord associatieWoord = associatieDataService.getAssociatie(Long.parseLong(tag));
+            WoordAfbeelding woordAfbeelding = woordAfbeeldingDataService.getWoordAfbeelding(Long.parseLong(tag));
 
-            if(associatieWoord.getJuist() != 1){
+            if(woordAfbeelding.getJuist() != 1){
                 isJuist = false;
             }
         }
@@ -178,17 +154,8 @@ public class Oef4 extends AppCompatActivity {
             final long woordID = woord.getId();
 
             score = score + 1;
-            kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 4, score);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    //verder gaan in de flow van de app
-                    Intent intent = new Intent(App.getAppContext(), Oef5.class);
-                    intent.putExtra("kindSessieID", kindSessieID);
-                    intent.putExtra("woordID", woordID);
-                    startActivity(intent);
-                }
-            });
+            kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 5, score);
+            //verder gaan in de flow van de app
         }else{
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.prentjesfout);
             mediaPlayer.start();

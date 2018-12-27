@@ -63,6 +63,10 @@
         <activity
             android:name=".activities.Oef4"
             android:label="@string/title_activity_oef4"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Oef5"
+            android:label="@string/title_activity_oef5"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

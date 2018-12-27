@@ -126,6 +126,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "FOREIGN KEY (woordID) REFERENCES woord(id))";
         db.execSQL(CREATE_TABLE_ASSOCIATIEWOORDEN);
 
+        String CREATE_TABLE_WOORDAFBEELDINGEN = "CREATE TABLE woordafbeeldingen (" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "woordID INTEGER," +
+                "afbeeldingNr INTEGER," +
+                "juist INTEGER," +
+                "FOREIGN KEY (woordID) REFERENCES woord(id))";
+        db.execSQL(CREATE_TABLE_WOORDAFBEELDINGEN);
+
         //wegschrijven data
         insertGroep(db);
         insertLetterGreep(db);
@@ -136,6 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         insertContextJuist(db);
         insertContextFout(db);
         insertAssociatieWoorden(db);
+        insertWoordAfbeeldingen(db);
     }
 
     //functies voor het wegschrijven van data
@@ -217,6 +226,49 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (8, 'Jonas wast zich met het kamp.')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (9, 'Jef opent de deur met de zaklamp.')");
         db.execSQL("INSERT INTO contextfout (woordID, zin) VALUES (10, 'Met een duikbril kan ik schrijven op papier.')");
+    }
+
+    private void insertWoordAfbeeldingen(SQLiteDatabase db){
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (10, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (10, 2, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (10, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (10, 4, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (1, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (1, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (1, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (1, 4, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 1, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 4, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 4, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (4, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (4, 2, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (4, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (4, 4, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (5, 1, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (5, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (5, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (5, 4, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (6, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (6, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (6, 3, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (6, 4, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (7, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (7, 2, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (7, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (7, 4, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (8, 1, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (8, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (8, 3, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (8, 4, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (9, 1, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (9, 2, 1)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (9, 3, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (9, 4, 1)");
     }
 
     private void insertAssociatieWoorden(SQLiteDatabase db){
