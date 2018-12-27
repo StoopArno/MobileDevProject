@@ -6,14 +6,12 @@ public class Woord {
     private String woord;
     private Long woordgroepID;
 
-
     public Woord(){}
     public Woord(long id, String woord, Long woordgroepID){
         this.id = id;
         this.woord = woord;
         this.woordgroepID = woordgroepID;
     }
-
 
     public long getId() {
         return id;

@@ -52,11 +52,11 @@ public class Oef3 extends AppCompatActivity {
     //random beslissen of we de juiste of foute zin weergeven
     private void kiesZin(){
         Random rand = new Random();
-        this.juistOfFout = rand.nextInt(1)+0;
+        this.juistOfFout = rand.nextInt(2)+1;
 
 
         switch(this.juistOfFout){
-            case 0:
+            case 2:
                 this.zin = contextDataService.getFouteContextZin(this.woord.getId());
                 this.zinType = "fout";
                 break;
@@ -72,12 +72,12 @@ public class Oef3 extends AppCompatActivity {
 
     //de andere zin nemen, afhankelijk van of de eerste juist of fout was
     private void andereZin(){
-        if(this.juistOfFout == 0){
+        if(this.juistOfFout == 2){
             this.juistOfFout = 1;
             this.zin = contextDataService.getJuisteContextZin(this.woord.getId());
             this.zinType = "juist";
         }else{
-            this.juistOfFout = 0;
+            this.juistOfFout = 2;
             this.zin = contextDataService.getFouteContextZin(this.woord.getId());
             this.zinType = "fout";
         }
@@ -133,11 +133,7 @@ public class Oef3 extends AppCompatActivity {
     //als het kind op de groene duim klikt
     public void checkDuimOp(View v){
         if(juistOfFout == 1){
-            if(score == 0){
-                score = 1;
-            }else{
-                score = score + 1;
-            }
+            score = score + 1;
             audioJuistZin();
             schrijfWeg();
         }else{
@@ -148,12 +144,8 @@ public class Oef3 extends AppCompatActivity {
 
     //als het kind op de rode duim klikt
     public void checkDuimAf(View v){
-        if(juistOfFout == 0){
-            if(score == 0){
-                score = 1;
-            }else{
-                score = score + 1;
-            }
+        if(juistOfFout == 2){
+            score = score + 1;
             audioFouteZin();
             schrijfWeg();
         }else{
@@ -172,12 +164,12 @@ public class Oef3 extends AppCompatActivity {
             //nog eentje doen
             zinCheck = true;
             andereZin();
-        }//else{
+        }else{
             //verder gaan in de flow van de app
-            //Intent intent = new Intent(this, Oef3.class);
-            //intent.putExtra("kindSessieID", this.kindSessieID);
-            //intent.putExtra("woordID", this.woord.getId());
-            //startActivity(intent);
-        //}
+            Intent intent = new Intent(this, Oef4.class);
+            intent.putExtra("kindSessieID", this.kindSessieID);
+            intent.putExtra("woordID", this.woord.getId());
+            startActivity(intent);
+        }
     }
 }
