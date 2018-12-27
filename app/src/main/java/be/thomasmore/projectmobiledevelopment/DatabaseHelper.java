@@ -163,8 +163,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void isnertTestKinderen(SQLiteDatabase db){
-        db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('testKind1', 1)");
-        db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('testKind2', 1)");
+        db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('Tom Nuyts', 1)");
+        db.execSQL("INSERT INTO kind (naam, groepID) VALUES ('Bram Bergen', 2)");
     }
 
     @Override

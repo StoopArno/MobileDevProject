@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:text="De meeste van deze knoppen zullen nog vervangen en/of veranderd worden door de juiste dingen zodat het verloop van de app correct is. De reden dat de knoppen zo staan is zodat wij deze gemakkelijker kunnen testen."/>
+            android:text="De meeste van deze knoppen zullen nog vervangen en/of veranderd worden door de juiste dingen zodat het verloop van de app correct is. De reden dat de knoppen zo staan is zodat wij deze gemakkelijker kunnen testen. Veel van de tekstvelden en knoppen kunnen ook nog van grootte en uitzicht veranderen"/>
         <Button
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
