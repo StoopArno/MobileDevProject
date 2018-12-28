@@ -11,4 +11,16 @@
     <string name="title_activity_oef4">Oef4</string>
     <string name="title_activity_oef5">Oef5</string>
     <string name="title_activity_overzicht_lijst_kinderen">Overzicht Kinderen</string>
+    <string name="title_activity_overzicht_sessie">Sessie overzicht</string>
+    <string name="groep">Groep</string>
+    <string name="gemiddelde">Gemiddelde</string>
+    <string name="overzicht_sessie_meting_voor">Voormeting</string>
+    <string name="overzicht_sessie_meting_na">Nameting</string>
+    <string name="overzicht_sessie_oef2">Oefening 2</string>
+    <string name="overzicht_sessie_oef3">Oefening 3</string>
+    <string name="overzicht_sessie_oef4">Oefening 4</string>
+    <string name="overzicht_sessie_oef5">Oefening 5</string>
+    <string name="overzicht_sessie_oef6.1">Oefening 6.1</string>
+    <string name="overzicht_sessie_oef6.2">Oefening 6.2</string>
+    <string name="overzicht_sessie_oef6.3">Oefening 6.3</string>
 </resources>

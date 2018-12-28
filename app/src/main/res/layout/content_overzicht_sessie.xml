@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.OverzichtSessie"
+    tools:showIn="@layout/activity_overzicht_sessie">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/overzicht_sessie_naam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/overzicht_sessie_groep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_meting_voor" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_meting_voor_juist"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_meting_na" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_meting_na_juist"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef2" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef2_gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef3" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef3_gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef4" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef4_gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef5" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef5_gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef6.1" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef6.1gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef6.2" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef6.2gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+            <View style="@style/overzicht_seperation_line" />
+
+            <LinearLayout style="@style/overzicht_oefening_item">
+                <TextView
+                    style="@style/overzicht_oefening_titel"
+                    android:text="@string/overzicht_sessie_oef6.3" />
+                <TextView
+                    android:id="@+id/overzicht_sessie_oef6.3gem"
+                    style="@style/overzicht_oefening_score" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

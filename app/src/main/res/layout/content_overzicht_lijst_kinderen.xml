@@ -8,4 +8,13 @@
     tools:context=".activities.OverzichtLijstKinderen"
     tools:showIn="@layout/activity_overzicht_lijst_kinderen">
 
+    <ListView
+        android:id="@+id/overzichtKinderenListView"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ListView>
 </android.support.constraint.ConstraintLayout>

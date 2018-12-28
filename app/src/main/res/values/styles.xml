@@ -17,4 +17,30 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="center">
+
+    </style>
+    <style name="overzicht_oefening_item">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">8dp</item>
+    </style>
+
+    <style name="overzicht_oefening_score">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+    <style name="overzicht_oefening_titel">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:textSize">20dp</item>
+    </style>
+
+    <style name="overzicht_seperation_line">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">#c0c0c0</item>
+    </style>
 </resources>

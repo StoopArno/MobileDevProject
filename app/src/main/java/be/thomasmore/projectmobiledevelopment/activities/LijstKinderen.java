@@ -21,7 +21,6 @@ import be.thomasmore.projectmobiledevelopment.models.Kind;
 public class LijstKinderen extends AppCompatActivity {
 
     private KindDataService kindDataService = new KindDataService();
-    private SessieDataService sessieDataService = new SessieDataService();
 
     public void vulListView(){
         View.OnClickListener editListener = new View.OnClickListener() {
@@ -49,8 +48,8 @@ public class LijstKinderen extends AppCompatActivity {
 
         KinderenListAdapter adapter = new KinderenListAdapter(getApplicationContext(), kinderen, editListener, delListener, startSessieListner);
 
-        final ListView listViewTest = (ListView) findViewById(R.id.listViewTest);
-        listViewTest.setAdapter(adapter);
+        final ListView listViewKinderen = (ListView) findViewById(R.id.listViewKinderen);
+        listViewKinderen.setAdapter(adapter);
     }
 
     public void onClickNewKind(View v){

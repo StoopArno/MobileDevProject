@@ -75,6 +75,10 @@
         <activity
             android:name=".activities.OverzichtLijstKinderen"
             android:label="@string/title_activity_overzicht_lijst_kinderen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.OverzichtSessie"
+            android:label="@string/title_activity_overzicht_sessie"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

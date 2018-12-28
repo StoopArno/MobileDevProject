@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import java.nio.channels.OverlappingFileLockException;
+
 import be.thomasmore.projectmobiledevelopment.activities.LijstKinderen;
 import be.thomasmore.projectmobiledevelopment.activities.ActivityMeting;
+import be.thomasmore.projectmobiledevelopment.activities.OverzichtLijstKinderen;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +26,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ActivityMeting.class);
         startActivity(intent);
     }
+
+    public void onClickOverzicht(View view){
+        Intent intent = new Intent(this, OverzichtLijstKinderen.class);
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

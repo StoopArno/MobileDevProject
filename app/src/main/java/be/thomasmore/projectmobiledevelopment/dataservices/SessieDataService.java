@@ -1,5 +1,6 @@
 package be.thomasmore.projectmobiledevelopment.dataservices;
 
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
@@ -19,5 +20,10 @@ public class SessieDataService {
         statement.bindLong(1, kindSessie.getKindID());
 
         return statement.executeInsert();
+    }
+
+    public long countSessieWhereKindId(long kindId){
+        SQLiteDatabase db = dbHelper.getReadableDB();
+        return DatabaseUtils.queryNumEntries(db, "KindSessie", "kindID=?", new String[]{kindId + ""});
     }
 }
