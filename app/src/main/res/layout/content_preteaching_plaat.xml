@@ -8,4 +8,29 @@
     tools:context=".activities.PreteachingPlaat"
     tools:showIn="@layout/activity_preteaching_plaat">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:contentDescription="audioicon"
+            android:src="@drawable/audioicon"
+            android:onClick="playAudioPreteach"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="preteachingplaat"
+            android:onClick="onClickPreteachPlaat"
+            android:src="@drawable/preteachingplaat"
+            android:adjustViewBounds="true"/>
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -49,10 +49,8 @@ public class ActivityKinderen extends AppCompatActivity {
         View.OnClickListener startSessieListner = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("test", "onClick: ROOT" + v.getTag());
                 long kindId = (long)v.getTag();
-                startSessie(kindId);
-                //Toast.makeText(App.getAppContext(), "Vanuit deze knop zal je een sessie met een kind kunnen starten", Toast.LENGTH_LONG).show();
+                toonPreteachingPlaat(kindId);
             }
         };
 
@@ -66,6 +64,12 @@ public class ActivityKinderen extends AppCompatActivity {
 
     public void onClickNewKind(View v){
         openEditKinderen(0);
+    }
+
+    private void toonPreteachingPlaat(long kindId){
+        Intent intent = new Intent(this, PreteachingPlaat.class);
+        intent.putExtra("kindId", kindId);
+        startActivity(intent);
     }
 
     private void openConfirmDialog(final long kindId){
@@ -85,18 +89,6 @@ public class ActivityKinderen extends AppCompatActivity {
     private void openEditKinderen(long kindId){
         Intent intent = new Intent(this, KinderenEdit.class);
         intent.putExtra("kindId", kindId);
-        startActivity(intent);
-    }
-
-    private void startSessie(long kindID){
-        KindSessie kindSessie = new KindSessie();
-        kindSessie.setKindID(kindID);
-
-        Long id = sessieDataService.addSessie(kindSessie);
-
-        Intent intent = new Intent(this, ActivityMeting.class);
-        intent.putExtra("kindSessieID", id);
-        intent.putExtra("metingNr", 1);
         startActivity(intent);
     }
 
