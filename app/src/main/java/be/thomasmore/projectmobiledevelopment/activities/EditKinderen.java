@@ -1,21 +1,13 @@
 package be.thomasmore.projectmobiledevelopment.activities;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +18,7 @@ import be.thomasmore.projectmobiledevelopment.dataservices.KindDataService;
 import be.thomasmore.projectmobiledevelopment.models.Groep;
 import be.thomasmore.projectmobiledevelopment.models.Kind;
 
-public class KinderenEdit extends AppCompatActivity {
+public class EditKinderen extends AppCompatActivity {
 
     private Kind kind;
     private KindDataService kindDataService = new KindDataService();
@@ -35,7 +27,7 @@ public class KinderenEdit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kinderen_edit);
+        setContentView(R.layout.activity_edit_kinderen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,7 +51,7 @@ public class KinderenEdit extends AppCompatActivity {
         } else{
             kindDataService.updatekind(kind);
         }
-        Intent intent = new Intent(this, ActivityKinderen.class);
+        Intent intent = new Intent(this, LijstKinderen.class);
         startActivity(intent);
     }
 

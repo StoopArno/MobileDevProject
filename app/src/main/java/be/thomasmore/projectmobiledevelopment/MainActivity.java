@@ -5,12 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import be.thomasmore.projectmobiledevelopment.activities.ActivityKinderen;
+import be.thomasmore.projectmobiledevelopment.activities.LijstKinderen;
 import be.thomasmore.projectmobiledevelopment.activities.ActivityMeting;
-import be.thomasmore.projectmobiledevelopment.dataservices.GroepDataService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     //temporary
     public void onClickKinderen(View view){
-        Intent intent = new Intent(this, ActivityKinderen.class);
+        Intent intent = new Intent(this, LijstKinderen.class);
         startActivity(intent);
     }
 

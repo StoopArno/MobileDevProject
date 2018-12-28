@@ -1,33 +1,24 @@
 package be.thomasmore.projectmobiledevelopment.activities;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.util.Arrays;
 import java.util.List;
 
-import be.thomasmore.projectmobiledevelopment.App;
 import be.thomasmore.projectmobiledevelopment.MainActivity;
 import be.thomasmore.projectmobiledevelopment.R;
 import be.thomasmore.projectmobiledevelopment.adapters.KinderenListAdapter;
 import be.thomasmore.projectmobiledevelopment.dataservices.KindDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.SessieDataService;
 import be.thomasmore.projectmobiledevelopment.models.Kind;
-import be.thomasmore.projectmobiledevelopment.models.KindSessie;
 
-public class ActivityKinderen extends AppCompatActivity {
+public class LijstKinderen extends AppCompatActivity {
 
     private KindDataService kindDataService = new KindDataService();
     private SessieDataService sessieDataService = new SessieDataService();
@@ -87,7 +78,7 @@ public class ActivityKinderen extends AppCompatActivity {
     }
 
     private void openEditKinderen(long kindId){
-        Intent intent = new Intent(this, KinderenEdit.class);
+        Intent intent = new Intent(this, EditKinderen.class);
         intent.putExtra("kindId", kindId);
         startActivity(intent);
     }
@@ -95,7 +86,7 @@ public class ActivityKinderen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kinderen);
+        setContentView(R.layout.activity_lijst_kinderen);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

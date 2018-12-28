@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.ActivityKinderen"
+            android:name=".activities.LijstKinderen"
             android:label="@string/title_activity_kinderen"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -40,13 +40,13 @@
             android:label="@string/title_activity_meting"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.KinderenEdit"
+            android:name=".activities.EditKinderen"
             android:label="@string/title_activity_kinderen_edit"
-            android:parentActivityName=".activities.ActivityKinderen"
+            android:parentActivityName=".activities.LijstKinderen"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="be.thomasmore.projectmobiledevelopment.activities.ActivityKinderen" />
+                android:value="be.thomasmore.projectmobiledevelopment.activities.LijstKinderen" />
         </activity>
         <activity
             android:name=".activities.Oef1"
@@ -72,6 +72,10 @@
             android:name=".activities.Oef5"
             android:label="@string/title_activity_oef5"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.OverzichtLijstKinderen"
+            android:label="@string/title_activity_overzicht_lijst_kinderen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
