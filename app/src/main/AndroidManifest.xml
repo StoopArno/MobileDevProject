@@ -79,6 +79,10 @@
         <activity
             android:name=".activities.OverzichtSessie"
             android:label="@string/title_activity_overzicht_sessie"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.OverzichtOefening"
+            android:label="@string/title_activity_overzicht_oefening"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

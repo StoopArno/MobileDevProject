@@ -1,5 +1,6 @@
 package be.thomasmore.projectmobiledevelopment.dataservices;
 
+import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
@@ -25,5 +26,31 @@ public class SessieDataService {
     public long countSessieWhereKindId(long kindId){
         SQLiteDatabase db = dbHelper.getReadableDB();
         return DatabaseUtils.queryNumEntries(db, "KindSessie", "kindID=?", new String[]{kindId + ""});
+    }
+
+    public KindSessie getSessie(long id){
+        SQLiteDatabase db = dbHelper.getReadableDB();
+        Cursor cursor = db.query(
+                "kindsessie",      // tabelnaam
+                new String[]{"id", "kindId"}, // kolommen
+                "id = ?",  // selectie
+                new String[]{String.valueOf(id)}, // selectieparameters
+                null,           // groupby
+                null,           // having
+                null,           // sorting
+                null
+        );
+
+        KindSessie sessie = new KindSessie();
+
+        if (cursor.moveToFirst()) {
+            sessie = new KindSessie(
+                    Long.parseLong(cursor.getString(0)),
+                    Long.parseLong(cursor.getString(1))
+            );
+        }
+        cursor.close();
+        db.close();
+        return sessie;
     }
 }

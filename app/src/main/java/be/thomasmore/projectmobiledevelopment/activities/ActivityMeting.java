@@ -114,7 +114,7 @@ public class ActivityMeting extends AppCompatActivity {
     //de layout maken
     private void maakLayout() {
         int k = 0;
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.meting_layout_main);
         for (int i = 0; i < RIJ; i++) {
             LinearLayout linearLayout = new LinearLayout(this);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
@@ -123,14 +123,13 @@ public class ActivityMeting extends AppCompatActivity {
                             ViewGroup.LayoutParams.WRAP_CONTENT));
             mainLayout.addView(linearLayout);
             for (int j = 0; j < KOLOM; j++) {
-                ImageView imageView = new ImageView(this);
+                ImageView imageView = new ImageView(this, null, R.style.std_1of4_img);
 
-                LinearLayout.LayoutParams imageLayoutParams =
-                        new LinearLayout.LayoutParams(500, 500);
-                imageLayoutParams.leftMargin = 10;
-                imageLayoutParams.topMargin = 10;
-                imageLayoutParams.rightMargin = 10;
-                imageView.setLayoutParams(imageLayoutParams);
+                LinearLayout.LayoutParams imageLayoutParams =  new LinearLayout.LayoutParams(500, 500);
+                //imageLayoutParams.leftMargin = 10;
+                //imageLayoutParams.topMargin = 10;
+                //imageLayoutParams.rightMargin = 10;
+                //imageView.setLayoutParams(imageLayoutParams);
                 imageView.setTag(this.images.get(k).getId());
 
                 imageView.setImageResource(R.drawable.duikbril);

@@ -19,44 +19,48 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/overzicht_sessie_naam"
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:id="@+id/overzicht_sessie_naam"
+                android:textSize="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/overzicht_sessie_groep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/overzicht_sessie_groep"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <View style="@style/overzicht_seperation_line" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:onClick="onClickOverzichtSessieMeting">
                 <TextView
                     style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_meting_voor" />
+                    android:text="@string/overzicht_sessie_meting" />
                 <TextView
-                    android:id="@+id/overzicht_sessie_meting_voor_juist"
+                    android:id="@+id/overzicht_sessie_meting_juist"
                     style="@style/overzicht_oefening_score" />
             </LinearLayout>
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_meting_na" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_meting_na_juist"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="2"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef2" />
@@ -67,7 +71,10 @@
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="3"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef3" />
@@ -78,7 +85,10 @@
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="4"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef4" />
@@ -89,7 +99,10 @@
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="5"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef5" />
@@ -100,7 +113,10 @@
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="6"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef6.1" />
@@ -111,7 +127,10 @@
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="7"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef6.2" />
@@ -122,7 +141,10 @@
 
             <View style="@style/overzicht_seperation_line" />
 
-            <LinearLayout style="@style/overzicht_oefening_item">
+            <LinearLayout
+                style="@style/overzicht_oefening_item"
+                android:tag="8"
+                android:onClick="onClickOverzichtSessieOefening">
                 <TextView
                     style="@style/overzicht_oefening_titel"
                     android:text="@string/overzicht_sessie_oef6.3" />

@@ -1,9 +1,13 @@
 package be.thomasmore.projectmobiledevelopment.dataservices;
 
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import be.thomasmore.projectmobiledevelopment.App;
 import be.thomasmore.projectmobiledevelopment.DatabaseHelper;
@@ -29,22 +33,25 @@ public class MetingDataService {
         statement.executeInsert();
     }
 
-    public Meting MetingWhereSessieId(int metingsNr, long sessieId){
+    public List<Meting> MetingWhereSessieId(int metingsNr, long sessieId){
         SQLiteDatabase db = dbHelper.getReadableDB();
         Cursor cursor = db.query(
                 "meting",      // tabelnaam
-                new String[]{"id", "metingsNr", "juist", "woordID", "sessieID"}, // kolommen
-                "sessieID = ?, metingsNr=?",  // selectie
-                new String[]{String.valueOf(metingsNr), String.valueOf(sessieId)}, // selectieparameters
+                new String[]{"id", "metingNr", "juist", "woordID", "sessieID"}, // kolommen
+                "sessieID = ? AND metingNr=?",  // selectie
+                new String[]{String.valueOf(sessieId), String.valueOf(metingsNr)}, // selectieparameters
                 null,           // groupby
                 null,           // having
                 null,           // sorting
                 null
         );
 
-        Meting meting = new Meting();
 
-        if (cursor.moveToFirst()) {
+        List<Meting> metingen = new ArrayList<Meting>();
+
+        Meting meting = new Meting();
+        while(cursor.moveToNext()){
+
             meting = new Meting(
                     Long.parseLong(cursor.getString(0)),
                     cursor.getInt(1),
@@ -52,9 +59,16 @@ public class MetingDataService {
                     Long.parseLong(cursor.getString(3)),
                     Long.parseLong(cursor.getString(4))
             );
+
+            // Make sure boolean is parsed correctly
+            if(cursor.getInt(2) == 1){
+                meting.setJuist(true);
+            }
+            metingen.add(meting);
         }
+
         cursor.close();
         db.close();
-        return meting;
+        return metingen;
     }
 }
