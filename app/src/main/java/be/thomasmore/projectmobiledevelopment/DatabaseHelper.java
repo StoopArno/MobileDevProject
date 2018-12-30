@@ -241,7 +241,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 1, 0)");
         db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 2, 1)");
         db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 3, 1)");
-        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 4, 0)");
+        db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (2, 4, 1)");
         db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 1, 1)");
         db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 2, 1)");
         db.execSQL("INSERT INTO woordafbeeldingen (woordID, afbeeldingNr, juist) VALUES (3, 3, 1)");

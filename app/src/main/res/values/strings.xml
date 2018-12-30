@@ -25,4 +25,9 @@
     <string name="title_activity_overzicht_oefening">Overzicht Oefening</string>
     <string name="juist">Juist</string>
     <string name="fout">Fout</string>
+    <string name="title_activity_oef6">Oef6</string>
+    <string name="title_activity_sessie_einde">SessieEinde</string>
+    <string name="einde_sessie">De sessie is voltooid. Klik hieronder om verder te gaan</string>
+    <string name="title_activity_oef62">Oef62</string>
+    <string name="title_activity_oef63">Oef63</string>
 </resources>

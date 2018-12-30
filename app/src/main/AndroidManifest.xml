@@ -83,6 +83,22 @@
         <activity
             android:name=".activities.OverzichtOefening"
             android:label="@string/title_activity_overzicht_oefening"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Oef6"
+            android:label="@string/title_activity_oef6"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.SessieEinde"
+            android:label="@string/title_activity_sessie_einde"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Oef62"
+            android:label="@string/title_activity_oef62"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.Oef63"
+            android:label="@string/title_activity_oef63"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -25,12 +25,20 @@ import java.util.List;
 import be.thomasmore.projectmobiledevelopment.App;
 import be.thomasmore.projectmobiledevelopment.R;
 import be.thomasmore.projectmobiledevelopment.dataservices.AssociatieDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.ConditieDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.KindDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.KindOefeningDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.KindSessieDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.WoordAfbeeldingDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.WoordDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.WoordGroepDataService;
 import be.thomasmore.projectmobiledevelopment.models.AssociatieWoord;
+import be.thomasmore.projectmobiledevelopment.models.ConditieGroep;
+import be.thomasmore.projectmobiledevelopment.models.Kind;
+import be.thomasmore.projectmobiledevelopment.models.KindSessie;
 import be.thomasmore.projectmobiledevelopment.models.Woord;
 import be.thomasmore.projectmobiledevelopment.models.WoordAfbeelding;
+import be.thomasmore.projectmobiledevelopment.models.Woordgroep;
 
 public class Oef5 extends AppCompatActivity {
 
@@ -45,6 +53,9 @@ public class Oef5 extends AppCompatActivity {
     private WoordDataService woordDataService = new WoordDataService();
     private KindOefeningDataService kindOefeningDataService = new KindOefeningDataService();
     private WoordAfbeeldingDataService woordAfbeeldingDataService = new WoordAfbeeldingDataService();
+    private KindDataService kindDataService = new KindDataService();
+    private KindSessieDataService kindSessieDataService = new KindSessieDataService();
+    private ConditieDataService conditieDataService = new ConditieDataService();
 
     //voor layout
     int KOLOM = 2;
@@ -146,6 +157,10 @@ public class Oef5 extends AppCompatActivity {
             }
         }
 
+        if(prenten.size() != 3){
+            isJuist = false;
+        }
+
         if(isJuist){
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.prentjesgoed);
             mediaPlayer.start();
@@ -156,11 +171,37 @@ public class Oef5 extends AppCompatActivity {
             score = score + 1;
             kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 5, score);
             //verder gaan in de flow van de app
+            bepaalConditie();
         }else{
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.prentjesfout);
             mediaPlayer.start();
 
             score = score + 1;
         }
+    }
+
+    //conditie voor oefening 6 bepalen
+    private void bepaalConditie(){
+        KindSessie kindSessie = kindSessieDataService.getKindSessie(kindSessieID);
+        Kind kind = kindDataService.getKind(kindSessie.getKindID());
+        ConditieGroep conditieGroep = conditieDataService.getCondieNr(woord.getWoordgroepID(), kind.getGroepID());
+
+        Intent intent = new Intent(this, Oef6.class);
+
+        switch(conditieGroep.getConditieNr()){
+            case 1:
+                intent = new Intent(this, Oef6.class);
+                break;
+            case 2:
+                intent = new Intent(this, Oef62.class);
+                break;
+            case 3:
+                intent = new Intent(this, Oef63.class);
+                break;
+        }
+
+        intent.putExtra("kindSessieID", this.kindSessieID);
+        intent.putExtra("woordID", this.woord.getId());
+        startActivity(intent);
     }
 }

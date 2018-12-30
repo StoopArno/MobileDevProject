@@ -170,6 +170,10 @@ public class Oef4 extends AppCompatActivity {
             }
         }
 
+        if(prenten.size() != 3){
+            isJuist = false;
+        }
+
         if(isJuist){
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.prentjesgoed);
             mediaPlayer.start();
