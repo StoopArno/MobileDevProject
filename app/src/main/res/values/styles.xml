@@ -47,13 +47,13 @@
     </style>
 
     <style name="std_1of4_img">
-        <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
-        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
 
-        <item name="android:height">100dp</item>
-        <item name="android:width">100dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">50dp</item>
 
-
+        <item name="android:scaleType">centerCrop</item>
     </style>
 </resources>

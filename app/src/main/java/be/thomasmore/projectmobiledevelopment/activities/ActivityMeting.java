@@ -61,7 +61,7 @@ public class ActivityMeting extends AppCompatActivity {
         this.woorden = woordDataService.getWoorden();
         this.testWoord = woordDataService.getWoord(10);
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.meting_textViewWoord);
         textViewWoord.setText(this.testWoord.getWoord());
 
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
@@ -82,7 +82,7 @@ public class ActivityMeting extends AppCompatActivity {
         } else {
             this.woord = this.woorden.get(teller-1);
 
-            TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+            TextView textViewWoord = (TextView) findViewById(R.id.meting_textViewWoord);
             textViewWoord.setText(this.woord.getWoord());
         }
 
@@ -123,28 +123,46 @@ public class ActivityMeting extends AppCompatActivity {
                             ViewGroup.LayoutParams.WRAP_CONTENT));
             mainLayout.addView(linearLayout);
             for (int j = 0; j < KOLOM; j++) {
-                ImageView imageView = new ImageView(this, null, R.style.std_1of4_img);
+                int IMAGE_DIMENSIONS = (int) (180 * getResources().getDisplayMetrics().density + 0.5f); //Vertaal dp naar int
+                int MARGIN_VAL = (int) (5 * getResources().getDisplayMetrics().density + 0.5f);
+                //View voor border
+                LinearLayout borderLayout = new LinearLayout(this);
+                LinearLayout.LayoutParams imageLayoutParams =  new LinearLayout.LayoutParams(IMAGE_DIMENSIONS, IMAGE_DIMENSIONS);
+                imageLayoutParams.setMargins(MARGIN_VAL, MARGIN_VAL, MARGIN_VAL, MARGIN_VAL);
 
-                LinearLayout.LayoutParams imageLayoutParams =  new LinearLayout.LayoutParams(500, 500);
-                //imageLayoutParams.leftMargin = 10;
-                //imageLayoutParams.topMargin = 10;
-                //imageLayoutParams.rightMargin = 10;
-                //imageView.setLayoutParams(imageLayoutParams);
-                imageView.setTag(this.images.get(k).getId());
+                borderLayout.setLayoutParams(imageLayoutParams);
+                borderLayout.setBackgroundResource(R.drawable.border_black);
+                borderLayout.setTag(this.images.get(k).getId());
 
-                imageView.setImageResource(R.drawable.duikbril);
-                imageView.setImageResource(getResources().getIdentifier(this.images.get(k).getWoord().toLowerCase(), "drawable", getPackageName()));
-
-                imageView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                borderLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         checkReply(v.getTag().toString());
                     }
                 });
 
+                ImageView imageView = new ImageView(this);
+
+                //LinearLayout.LayoutParams imageLayoutParams =  new LinearLayout.LayoutParams(IMAGE_DIMENSIONS, IMAGE_DIMENSIONS);
+                //imageView.setLayoutParams(imageLayoutParams);
+
+                //int paddingVal1 = (int)(5 * getResources().getDisplayMetrics().density + 0.5f);
+                //int paddingVal2 = (int)(10 * getResources().getDisplayMetrics().density + 0.5f);
+                //imageView.setPadding(paddingVal1, paddingVal1, paddingVal1, paddingVal1);
+
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setBackgroundResource(R.drawable.border_black);
+
+                imageView.setImageResource(R.drawable.duikbril);
+                imageView.setImageResource(getResources().getIdentifier(this.images.get(k).getWoord().toLowerCase(), "drawable", getPackageName()));
+
+
+
                 this.imagesView[k] = imageView;
                 k++;
-                linearLayout.addView(imageView);
+                //linearLayout.addView(imageView);
+                borderLayout.addView(imageView);
+                linearLayout.addView(borderLayout);
             }
         }
     }
@@ -170,7 +188,7 @@ public class ActivityMeting extends AppCompatActivity {
         //checken of er nog een woord is
         if(teller != 9){
             //doorgaan voor een ander woord
-            LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
+            LinearLayout mainLayout = (LinearLayout) findViewById(R.id.meting_layout_main);
             mainLayout.removeAllViews();
 
             teller = teller + 1;
