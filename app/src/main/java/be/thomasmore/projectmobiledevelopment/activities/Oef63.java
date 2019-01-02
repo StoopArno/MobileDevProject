@@ -8,11 +8,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import java.util.List;
 
 import be.thomasmore.projectmobiledevelopment.R;
 import be.thomasmore.projectmobiledevelopment.dataservices.KindOefeningDataService;
+import be.thomasmore.projectmobiledevelopment.dataservices.LettergreepDataService;
 import be.thomasmore.projectmobiledevelopment.dataservices.WoordDataService;
+import be.thomasmore.projectmobiledevelopment.models.Lettergreep;
 import be.thomasmore.projectmobiledevelopment.models.Woord;
 
 public class Oef63 extends AppCompatActivity {
@@ -25,6 +31,7 @@ public class Oef63 extends AppCompatActivity {
     //dataservice
     private WoordDataService woordDataService = new WoordDataService();
     private KindOefeningDataService kindOefeningDataService = new KindOefeningDataService();
+    private LettergreepDataService lettergreepDataService = new LettergreepDataService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,17 +43,54 @@ public class Oef63 extends AppCompatActivity {
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
         Long woordID = getIntent().getLongExtra("woordID", 0);
         this.woord = woordDataService.getWoord(woordID);
-    }
 
-    //audio afspelen
-    public void playAudio(View v){
+        maakLayout();
         MediaPlayer mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(this.woord.getWoord().toLowerCase() + "63", "raw", getPackageName()));
         mediaPlayer.start();
     }
 
-    public void onClickVerder(View v){
+    //de layout maken
+    private void maakLayout(){
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
+        ImageView imageView = new ImageView(this);
+
+        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(350, 350);
+        imageLayoutParams.leftMargin = 10;
+        imageLayoutParams.topMargin = 10;
+        imageLayoutParams.rightMargin = 10;
+        imageView.setLayoutParams(imageLayoutParams);
+        imageView.setTag(this.woord.getId());
+
+        imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
+        mainLayout.addView(imageView);
+
+        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+
+        if(lettergreepDataService.hasLetterGreep(woord.getId())){
+            List<Lettergreep> lettergrepen = lettergreepDataService.getLetterGrepen(woord.getId());
+
+            textViewWoord.setText(lettergrepen.get(0).getLettergreep() + "-" + lettergrepen.get(1).getLettergreep());
+        }else{
+            textViewWoord.setText(this.woord.getWoord());
+        }
+    }
+
+    //audio afspelen
+    public void playAudio(View v){
+        MediaPlayer mediaPlayer = new MediaPlayer();
+
+        if(lettergreepDataService.hasLetterGreep(woord.getId())){
+            mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(this.woord.getWoord().toLowerCase() + "63greep", "raw", getPackageName()));
+        }else{
+            mediaPlayer = MediaPlayer.create(this, getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "raw", getPackageName()));
+        }
+
+        mediaPlayer.start();
+    }
+
+    private void verdergaan(){
         //verdergaan door de flow van de app
-        Intent intent = new Intent(this, SessieEinde.class);
+        Intent intent = new Intent(this, ActivityMeting.class);
         long id = 0;
 
         if(woord.getId() == 10){
@@ -57,12 +101,31 @@ public class Oef63 extends AppCompatActivity {
 
         if(id < 9){
             intent = new Intent(this, Oef1.class);
-            intent.putExtra("kindSessieID", this.kindSessieID);
-            id = this.woordDataService.getWoord(woord.getId() + 1).getId();
+            id = this.woordDataService.getWoord(id + 1).getId();
             intent.putExtra("woordID", id);
+            intent.putExtra("kindSessieID", this.kindSessieID);
+        }else{
+            intent.putExtra("metingNr", 2);
+            intent.putExtra("kindSessieID", this.kindSessieID);
         }
 
         startActivity(intent);
     }
 
+    //als het kind juist antwoord
+    public void onClickJuist(View v){
+        schrijfWeg(1);
+    }
+
+    //als het kind fout antwoord
+    public void onClickFout(View v){
+        schrijfWeg(0);
+    }
+
+    //antwoord wegschrijven
+    private void schrijfWeg(int score){
+        kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 8, score);
+
+        verdergaan();
+    }
 }

@@ -64,23 +64,26 @@ public class Oef6 extends AppCompatActivity {
 
     //score wegschrijven
     private void schrijfWeg(){
-        kindOefeningDataService.addKindOefening(kindSessieID, woord.getId(), 6, score);
+        kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 6, score);
 
         //verdergaan door de flow van de app
-        Intent intent = new Intent(this, SessieEinde.class);
+        Intent intent = new Intent(this, ActivityMeting.class);
         long id = 0;
 
-        if(woord.getId() == 10){
+        if(this.woord.getId() == 10){
             id = 0;
         }else{
-            id = woord.getId();
+            id = this.woord.getId();
         }
 
         if(id < 9){
             intent = new Intent(this, Oef1.class);
-            intent.putExtra("kindSessieID", this.kindSessieID);
             id = this.woordDataService.getWoord(id + 1).getId();
             intent.putExtra("woordID", id);
+            intent.putExtra("kindSessieID", this.kindSessieID);
+        }else{
+            intent.putExtra("metingNr", 2);
+            intent.putExtra("kindSessieID", this.kindSessieID);
         }
 
         startActivity(intent);

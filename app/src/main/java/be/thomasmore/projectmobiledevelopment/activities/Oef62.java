@@ -32,7 +32,6 @@ public class Oef62 extends AppCompatActivity {
     //woorden
     private Long kindSessieID;
     private Woord woord;
-    int score = 0;
 
     //dataservice
     private WoordDataService woordDataService = new WoordDataService();
@@ -47,8 +46,7 @@ public class Oef62 extends AppCompatActivity {
 
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
         Long woordID = getIntent().getLongExtra("woordID", 0);
-        //Voorlopig voor te layout en animatie te testen
-        this.woord = woordDataService.getWoord(1);
+        this.woord = woordDataService.getWoord(woordID);
         IMAGE_DIMENSIONS = (int) (100 * getResources().getDisplayMetrics().density + 0.5f);
         vulVelden();
     }
@@ -63,6 +61,24 @@ public class Oef62 extends AppCompatActivity {
                 setPosities();
             }
         });
+
+        maakLayout();
+    }
+
+    //de layout maken
+    private void maakLayout(){
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
+        ImageView imageView = new ImageView(this);
+
+        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(350, 350);
+        imageLayoutParams.leftMargin = 10;
+        imageLayoutParams.topMargin = 10;
+        imageLayoutParams.rightMargin = 10;
+        imageView.setLayoutParams(imageLayoutParams);
+        imageView.setTag(this.woord.getId());
+
+        imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
+        mainLayout.addView(imageView);
     }
 
     private void setPosities(){
@@ -84,7 +100,6 @@ public class Oef62 extends AppCompatActivity {
         final TextView textViewWoord = (TextView) findViewById(R.id.oef62_woord);
         final int widthWoord = textViewWoord.getWidth();
         imageViewBij.animate().translationX(widthWoord).setDuration(duratie).start();
-
     }
 
     //audio afspelen
@@ -94,9 +109,9 @@ public class Oef62 extends AppCompatActivity {
         speelAnimatie(mediaPlayer.getDuration());
     }
 
-    public void onClickVerder(View v){
+    private void verdergaan(){
         //verdergaan door de flow van de app
-        Intent intent = new Intent(this, SessieEinde.class);
+        Intent intent = new Intent(this, ActivityMeting.class);
         long id = 0;
 
         if(woord.getId() == 10){
@@ -107,12 +122,31 @@ public class Oef62 extends AppCompatActivity {
 
         if(id < 9){
             intent = new Intent(this, Oef1.class);
-            intent.putExtra("kindSessieID", this.kindSessieID);
-            id = this.woordDataService.getWoord(woord.getId() + 1).getId();
+            id = this.woordDataService.getWoord(id + 1).getId();
             intent.putExtra("woordID", id);
+            intent.putExtra("kindSessieID", this.kindSessieID);
+        }else{
+            intent.putExtra("metingNr", 2);
+            intent.putExtra("kindSessieID", this.kindSessieID);
         }
-
         startActivity(intent);
+    }
+
+    //als het kind juist antwoord
+    public void onClickJuist(View v){
+        schrijfWeg(1);
+    }
+
+    //als het kind fout antwoord
+    public void onClickFout(View v){
+        schrijfWeg(0);
+    }
+
+    //antwoord wegschrijven
+    private void schrijfWeg(int score){
+        kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 7, score);
+
+        verdergaan();
     }
 
 }
