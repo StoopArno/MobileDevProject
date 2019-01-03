@@ -62,7 +62,7 @@ public class Oef4 extends AppCompatActivity {
 
         this.associatieList = associatieDataService.getAssociatieByWoord(this.woord.getId());
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.oef4_textViewWoord);
         textViewWoord.setText(this.woord.getWoord());
 
         maakLayoutTop();
@@ -71,7 +71,7 @@ public class Oef4 extends AppCompatActivity {
 
     //de layout maken
     private void maakLayoutTop(){
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.oef4_layout_main);
         ImageView imageView = new ImageView(this);
 
         LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(200, 200);
@@ -87,7 +87,7 @@ public class Oef4 extends AppCompatActivity {
 
     private void maakLayoutBottom(){
         int k = 0;
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_bottom);
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.oef4_layout_bottom);
         for (int i = 0; i < RIJ; i++) {
             LinearLayout linearLayout = new LinearLayout(this);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);

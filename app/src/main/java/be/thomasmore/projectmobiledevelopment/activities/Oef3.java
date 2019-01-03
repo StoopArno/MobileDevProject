@@ -66,7 +66,7 @@ public class Oef3 extends AppCompatActivity {
                 break;
         }
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.oef3_textViewWoord);
         textViewWoord.setText(this.zin);
     }
 
@@ -82,7 +82,7 @@ public class Oef3 extends AppCompatActivity {
             this.zinType = "fout";
         }
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.oef3_textViewWoord);
         textViewWoord.setText(this.zin);
     }
 

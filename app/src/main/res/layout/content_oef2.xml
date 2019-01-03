@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:id="@+id/layout_parent"
+        android:id="@+id/oef2_layout_parent"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:id="@+id/layout_main"
+            android:id="@+id/oef2_layout_main"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -38,17 +38,34 @@
 
         </LinearLayout>
 
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Juist"
-            android:onClick="onClickJuist"/>
+        <ImageView
+            android:id="@+id/oef2_woord_image"
+            android:scaleType="centerCrop"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
 
-        <Button
-            android:layout_width="fill_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fout"
-            android:onClick="onClickFout"/>
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <Button
+                android:layout_marginRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Juist"
+                android:onClick="onClickJuist"/>
+
+            <Button
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fout"
+                android:onClick="onClickFout"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 

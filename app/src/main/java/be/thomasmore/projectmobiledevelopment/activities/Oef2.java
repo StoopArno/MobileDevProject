@@ -43,18 +43,11 @@ public class Oef2 extends AppCompatActivity {
 
     //de layout maken
     private void maakLayout(){
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
-        ImageView imageView = new ImageView(this);
+        ImageView imageView = (ImageView) findViewById(R.id.oef2_woord_image);
 
-        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(1000, 1000);
-        imageLayoutParams.leftMargin = 10;
-        imageLayoutParams.topMargin = 10;
-        imageLayoutParams.rightMargin = 10;
-        imageView.setLayoutParams(imageLayoutParams);
         imageView.setTag(this.woord.getId());
 
         imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
-        mainLayout.addView(imageView);
     }
 
     //audio afspelen
