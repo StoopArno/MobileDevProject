@@ -165,13 +165,15 @@ public class Oef5 extends AppCompatActivity {
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.prentjesgoed);
             mediaPlayer.start();
 
-            final long kindSessieID = this.kindSessieID;
-            final long woordID = woord.getId();
-
             score = score + 1;
             kindOefeningDataService.addKindOefening(this.kindSessieID, this.woord.getId(), 5, score);
             //verder gaan in de flow van de app
-            bepaalConditie();
+            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    bepaalConditie();
+                }
+            });
         }else{
             MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.prentjesfout);
             mediaPlayer.start();

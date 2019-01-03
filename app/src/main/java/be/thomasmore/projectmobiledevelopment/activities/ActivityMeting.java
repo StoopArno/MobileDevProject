@@ -203,6 +203,9 @@ public class ActivityMeting extends AppCompatActivity {
                 Long id = Long.valueOf(10); //we beginnen altijd met woord 10
                 intent.putExtra("woordID", id);
                 startActivity(intent);
+            }else{
+                Intent intent = new Intent(this, SessieEinde.class);
+                startActivity(intent);
             }
         }
     }
