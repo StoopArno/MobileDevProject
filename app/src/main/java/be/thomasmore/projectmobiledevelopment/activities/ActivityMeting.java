@@ -123,7 +123,7 @@ public class ActivityMeting extends AppCompatActivity {
                             ViewGroup.LayoutParams.WRAP_CONTENT));
             mainLayout.addView(linearLayout);
             for (int j = 0; j < KOLOM; j++) {
-                int IMAGE_DIMENSIONS = (int) (180 * getResources().getDisplayMetrics().density + 0.5f); //Vertaal dp naar int
+                int IMAGE_DIMENSIONS = (int) (140 * getResources().getDisplayMetrics().density + 0.5f); //Vertaal dp naar int
                 int MARGIN_VAL = (int) (5 * getResources().getDisplayMetrics().density + 0.5f);
                 //View voor border
                 LinearLayout borderLayout = new LinearLayout(this);
@@ -151,7 +151,7 @@ public class ActivityMeting extends AppCompatActivity {
                 //imageView.setPadding(paddingVal1, paddingVal1, paddingVal1, paddingVal1);
 
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                imageView.setBackgroundResource(R.drawable.border_black);
+                //imageView.setBackgroundResource(R.drawable.border_black);
 
                 imageView.setImageResource(R.drawable.duikbril);
                 imageView.setImageResource(getResources().getIdentifier(this.images.get(k).getWoord().toLowerCase(), "drawable", getPackageName()));

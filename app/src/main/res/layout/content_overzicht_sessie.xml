@@ -8,7 +8,7 @@
     tools:context=".activities.OverzichtSessie"
     tools:showIn="@layout/activity_overzicht_sessie">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -16,143 +16,48 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
+            android:id="@+id/overzicht_sessie_titel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
+
             <TextView
                 android:id="@+id/overzicht_sessie_naam"
-                android:textSize="25dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="30dp" />
 
             <TextView
                 android:id="@+id/overzicht_sessie_groep"
-                android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"/>
+                android:layout_alignParentRight="true"
+                android:textSize="25dp" />
         </RelativeLayout>
 
-        <View style="@style/overzicht_seperation_line" />
+        <View android:id="@+id/overzicht_sessie_sepration"
+            android:layout_below="@+id/overzicht_sessie_titel"
+            style="@style/overzicht_seperation_line" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+        <ExpandableListView
+            android:id="@+id/overzicht_sessie_lijst_oef"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indicatorRight="?android:attr/expandableListPreferredItemIndicatorRight"
+            android:divider="@android:color/darker_gray"
+            android:dividerHeight="0.5dp"
+            android:layout_below="@+id/overzicht_sessie_sepration"
+            android:layout_centerHorizontal="true">
 
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:onClick="onClickOverzichtSessieMeting">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_meting" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_meting_juist"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="2"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef2" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef2_gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="3"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef3" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef3_gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="4"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef4" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef4_gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="5"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef5" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef5_gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="6"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef6.1" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef6.1gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="7"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef6.2" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef6.2gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-            <View style="@style/overzicht_seperation_line" />
-
-            <LinearLayout
-                style="@style/overzicht_oefening_item"
-                android:tag="8"
-                android:onClick="onClickOverzichtSessieOefening">
-                <TextView
-                    style="@style/overzicht_oefening_titel"
-                    android:text="@string/overzicht_sessie_oef6.3" />
-                <TextView
-                    android:id="@+id/overzicht_sessie_oef6.3gem"
-                    style="@style/overzicht_oefening_score" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </LinearLayout>
+        </ExpandableListView>
+    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

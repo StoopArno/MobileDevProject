@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -42,8 +44,8 @@ public class KinderenListAdapter extends ArrayAdapter<Kind> {
         textViewNaam.setText(values.get(position).getNaam());
         textGroepNr.setText("Groep " + values.get(position).getGroepID());
 
-        final Button btnEdit = (Button) rowView.findViewById(R.id.editKind);
-        final Button btnDel = (Button) rowView.findViewById(R.id.delKind);
+        final ImageView btnEdit = (ImageView) rowView.findViewById(R.id.editKind);
+        final ImageView btnDel = (ImageView) rowView.findViewById(R.id.delKind);
         final RelativeLayout rootView = (RelativeLayout) rowView.findViewById(R.id.rootLayout);
 
         btnEdit.setOnClickListener(editListener);

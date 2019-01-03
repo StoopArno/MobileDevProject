@@ -71,12 +71,12 @@ public class Oef5 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
-        Long woordID = getIntent().getLongExtra("woordID", 0);
+        Long woordID = getIntent().getLongExtra("woordID", 1);
         this.woord = woordDataService.getWoord(woordID);
 
         this.afbeeldingList = woordAfbeeldingDataService.getAfbeeldingenByWoord(this.woord.getId());
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.oef5_textViewWoord);
         textViewWoord.setText(this.woord.getWoord());
 
         maakLayout();
@@ -85,38 +85,44 @@ public class Oef5 extends AppCompatActivity {
     //de layout maken
     private void maakLayout() {
         int k = 0;
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_bottom);
+        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.oef5_layout_bottom);
         for (int i = 0; i < RIJ; i++) {
-            LinearLayout linearLayout = new LinearLayout(this);
+            final LinearLayout linearLayout = new LinearLayout(this);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-            linearLayout.setLayoutParams(
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT));
+            linearLayout.setLayoutParams( new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             mainLayout.addView(linearLayout);
             for (int j = 0; j < KOLOM; j++) {
+
+
+                int LAYOUT_MARGIN = (int) (10 * getResources().getDisplayMetrics().density + 0.5f);
+                int IMG_DIMENSIONS = (int) (150 * getResources().getDisplayMetrics().density + 0.5f);
+                int TEXT_SIZE = (int) (9 * getResources().getDisplayMetrics().density + 0.5f);
+                int LAYOUT_PADDING = (int) (3 * getResources().getDisplayMetrics().density + 0.5f);
+
                 final ImageView imageView = new ImageView(this);
-
-                final LinearLayout.LayoutParams imageLayoutParams =
-                        new LinearLayout.LayoutParams(500, 500);
-                imageLayoutParams.leftMargin = 10;
-                imageLayoutParams.topMargin = 10;
-                imageLayoutParams.rightMargin = 10;
-                imageView.setLayoutParams(imageLayoutParams);
-                imageView.setTag(this.afbeeldingList.get(k).getId());
-
+                LinearLayout.LayoutParams imgLayoutParams = new LinearLayout.LayoutParams(IMG_DIMENSIONS, IMG_DIMENSIONS);
+                imageView.setLayoutParams(imgLayoutParams);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imageView.setImageResource(R.drawable.duikbril);
                 imageView.setImageResource(getResources().getIdentifier("jf" + this.woord.getWoord().toLowerCase() + this.afbeeldingList.get(k).getAfbeeldingNr(), "drawable", getPackageName()));
 
-                imageView.setOnClickListener(new View.OnClickListener() {
+                final LinearLayout linearLayoutItem = new LinearLayout(this);
+                final LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                linearLayoutParams.setMargins(LAYOUT_MARGIN, LAYOUT_MARGIN, LAYOUT_MARGIN, LAYOUT_MARGIN);
+                linearLayoutItem.setLayoutParams(linearLayoutParams);
+                linearLayoutItem.setPadding(LAYOUT_PADDING, LAYOUT_PADDING, LAYOUT_PADDING, LAYOUT_PADDING);
+                linearLayoutItem.setTag(this.afbeeldingList.get(k).getId());
+
+                linearLayoutItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if(!prenten.contains(v.getTag().toString()) && prenten.size() == 3){
                             Toast.makeText(App.getAppContext(), "Er zijn al 3 prenten gekozen", Toast.LENGTH_LONG).show();
                         }else{
                             if(prenten.contains(v.getTag().toString())){
-                                imageView.setColorFilter(null);
+                                linearLayoutItem.setBackgroundResource(0);
                             }else{
-                                imageView.setColorFilter(Color.GREEN, PorterDuff.Mode.LIGHTEN);
+                                linearLayoutItem.setBackgroundResource(R.drawable.border_green);
                             }
                             toggleAfbeelding(v.getTag().toString());
                         }
@@ -125,7 +131,8 @@ public class Oef5 extends AppCompatActivity {
 
                 this.imagesView[k] = imageView;
                 k++;
-                linearLayout.addView(imageView);
+                linearLayoutItem.addView(imageView);
+                linearLayout.addView(linearLayoutItem);
             }
         }
     }

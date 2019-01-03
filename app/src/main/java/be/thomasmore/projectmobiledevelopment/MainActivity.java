@@ -10,7 +10,10 @@ import java.nio.channels.OverlappingFileLockException;
 
 import be.thomasmore.projectmobiledevelopment.activities.LijstKinderen;
 import be.thomasmore.projectmobiledevelopment.activities.ActivityMeting;
+import be.thomasmore.projectmobiledevelopment.activities.Oef4;
+import be.thomasmore.projectmobiledevelopment.activities.Oef5;
 import be.thomasmore.projectmobiledevelopment.activities.Oef62;
+import be.thomasmore.projectmobiledevelopment.activities.Oef63;
 import be.thomasmore.projectmobiledevelopment.activities.OverzichtLijstKinderen;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickMeting(View view){
-        Intent intent = new Intent(this, Oef62.class);
+        Intent intent = new Intent(this, Oef63.class);
         startActivity(intent);
     }
 

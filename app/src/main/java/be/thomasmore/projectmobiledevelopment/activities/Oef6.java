@@ -42,7 +42,7 @@ public class Oef6 extends AppCompatActivity {
         Long woordID = getIntent().getLongExtra("woordID", 0);
         this.woord = woordDataService.getWoord(woordID);
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.oef6_textViewWoord);
         textViewWoord.setText(this.woord.getWoord());
     }
 

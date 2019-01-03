@@ -45,9 +45,9 @@ public class Oef62 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
-        Long woordID = getIntent().getLongExtra("woordID", 0);
+        Long woordID = getIntent().getLongExtra("woordID", 1);
         this.woord = woordDataService.getWoord(woordID);
-        IMAGE_DIMENSIONS = (int) (100 * getResources().getDisplayMetrics().density + 0.5f);
+        IMAGE_DIMENSIONS = (int) (70 * getResources().getDisplayMetrics().density + 0.5f);
         vulVelden();
     }
 
@@ -62,24 +62,10 @@ public class Oef62 extends AppCompatActivity {
             }
         });
 
-        maakLayout();
-    }
-
-    //de layout maken
-    private void maakLayout(){
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
-        ImageView imageView = new ImageView(this);
-
-        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(350, 350);
-        imageLayoutParams.leftMargin = 10;
-        imageLayoutParams.topMargin = 10;
-        imageLayoutParams.rightMargin = 10;
-        imageView.setLayoutParams(imageLayoutParams);
-        imageView.setTag(this.woord.getId());
-
+        ImageView imageView = (ImageView) findViewById(R.id.oef62_img);
         imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
-        mainLayout.addView(imageView);
     }
+
 
     private void setPosities(){
         TextView textViewWoord = (TextView) findViewById(R.id.oef62_woord);
@@ -99,6 +85,7 @@ public class Oef62 extends AppCompatActivity {
         final ImageView imageViewBij = (ImageView) findViewById(R.id.oef62_bij);
         final TextView textViewWoord = (TextView) findViewById(R.id.oef62_woord);
         final int widthWoord = textViewWoord.getWidth();
+        imageViewBij.setTranslationX(0);
         imageViewBij.animate().translationX(widthWoord).setDuration(duratie).start();
     }
 

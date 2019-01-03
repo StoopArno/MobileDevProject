@@ -41,7 +41,7 @@ public class Oef63 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
-        Long woordID = getIntent().getLongExtra("woordID", 0);
+        Long woordID = getIntent().getLongExtra("woordID", 1);
         this.woord = woordDataService.getWoord(woordID);
 
         maakLayout();
@@ -51,20 +51,11 @@ public class Oef63 extends AppCompatActivity {
 
     //de layout maken
     private void maakLayout(){
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.layout_main);
-        ImageView imageView = new ImageView(this);
-
-        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(350, 350);
-        imageLayoutParams.leftMargin = 10;
-        imageLayoutParams.topMargin = 10;
-        imageLayoutParams.rightMargin = 10;
-        imageView.setLayoutParams(imageLayoutParams);
+        ImageView imageView = (ImageView) findViewById(R.id.oef63_img);
         imageView.setTag(this.woord.getId());
-
         imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
-        mainLayout.addView(imageView);
 
-        TextView textViewWoord = (TextView) findViewById(R.id.textViewWoord);
+        TextView textViewWoord = (TextView) findViewById(R.id.oef63_textViewWoord);
 
         if(lettergreepDataService.hasLetterGreep(woord.getId())){
             List<Lettergreep> lettergrepen = lettergreepDataService.getLetterGrepen(woord.getId());

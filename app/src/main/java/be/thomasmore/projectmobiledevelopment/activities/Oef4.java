@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -57,7 +59,7 @@ public class Oef4 extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         this.kindSessieID = getIntent().getLongExtra("kindSessieID", 0);
-        Long woordID = getIntent().getLongExtra("woordID", 0);
+        Long woordID = getIntent().getLongExtra("woordID", 1);
         this.woord = woordDataService.getWoord(woordID);
 
         this.associatieList = associatieDataService.getAssociatieByWoord(this.woord.getId());
@@ -71,18 +73,9 @@ public class Oef4 extends AppCompatActivity {
 
     //de layout maken
     private void maakLayoutTop(){
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.oef4_layout_main);
-        ImageView imageView = new ImageView(this);
-
-        LinearLayout.LayoutParams imageLayoutParams = new LinearLayout.LayoutParams(200, 200);
-        imageLayoutParams.leftMargin = 10;
-        imageLayoutParams.topMargin = 10;
-        imageLayoutParams.rightMargin = 10;
-        imageView.setLayoutParams(imageLayoutParams);
+        ImageView imageView = (ImageView) findViewById(R.id.oef4_image_top);
         imageView.setTag(this.woord.getId());
-
         imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase(), "drawable", getPackageName()));
-        mainLayout.addView(imageView);
     }
 
     private void maakLayoutBottom(){
@@ -91,34 +84,41 @@ public class Oef4 extends AppCompatActivity {
         for (int i = 0; i < RIJ; i++) {
             LinearLayout linearLayout = new LinearLayout(this);
             linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-            linearLayout.setLayoutParams(
-                    new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT));
+            linearLayout.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
             linearLayout.setWeightSum(2);
             mainLayout.addView(linearLayout);
             for (int j = 0; j < KOLOM; j++) {
-                RelativeLayout relativeLayout = new RelativeLayout(this);
-                relativeLayout.setLayoutParams(
-                        new RelativeLayout.LayoutParams(500,
-                        ViewGroup.LayoutParams.MATCH_PARENT));
+                final LinearLayout linearLayoutKolom = new LinearLayout(this);
+
+                int LAYOUT_MARGIN = (int) (5 * getResources().getDisplayMetrics().density + 0.5f);
+                int IMG_DIMENSIONS = (int) (110 * getResources().getDisplayMetrics().density + 0.5f);
+                int TEXT_SIZE = (int) (7 * getResources().getDisplayMetrics().density + 0.5f);
+                int LAYOUT_PADDING = (int) (3 * getResources().getDisplayMetrics().density + 0.5f);
+
+                LinearLayout.LayoutParams linearLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                linearLayoutParams.setMargins(LAYOUT_MARGIN, LAYOUT_MARGIN, LAYOUT_MARGIN, LAYOUT_MARGIN);
+                linearLayoutKolom.setPadding(LAYOUT_PADDING, LAYOUT_PADDING, LAYOUT_PADDING, LAYOUT_PADDING);
+                linearLayoutKolom.setLayoutParams(linearLayoutParams);
+                linearLayoutKolom.setTag(this.associatieList.get(k).getId());
+                linearLayoutKolom.setOrientation(LinearLayout.VERTICAL);
+
 
                 ImageView imageView = new ImageView(this);
-                final TextView textViewAssociate = new TextView(this);
+                LinearLayout.LayoutParams imgLayoutParams = new LinearLayout.LayoutParams(IMG_DIMENSIONS, IMG_DIMENSIONS);
+                imageView.setLayoutParams(imgLayoutParams);
+                imageView.setImageResource(R.drawable.duikbril);
+                imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase() + associatieList.get(k).getAfbeeldingNr(), "drawable", getPackageName()));
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
-                LinearLayout.LayoutParams imageLayoutParams =
-                        new LinearLayout.LayoutParams(500, 500);
-                //imageLayoutParams.leftMargin = 500;
-                //imageLayoutParams.rightMargin = 500;
-                imageView.setLayoutParams(imageLayoutParams);
-                imageView.setTag(this.associatieList.get(k).getId());
+                final TextView textViewAssociate = new TextView(this);
+                LinearLayout.LayoutParams textViewParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+                textViewAssociate.setGravity(Gravity.CENTER);
                 textViewAssociate.setText(this.associatieList.get(k).getWoord());
+                textViewAssociate.setTextSize(TEXT_SIZE);
 
                 final int color = textViewAssociate.getCurrentTextColor();
 
-                imageView.setImageResource(R.drawable.duikbril);
-                imageView.setImageResource(getResources().getIdentifier(this.woord.getWoord().toLowerCase() + associatieList.get(k).getAfbeeldingNr(), "drawable", getPackageName()));
-
-                imageView.setOnClickListener(new View.OnClickListener() {
+                linearLayoutKolom.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if(!prenten.contains(v.getTag().toString()) && prenten.size() == 3){
@@ -126,8 +126,10 @@ public class Oef4 extends AppCompatActivity {
                         }else{
                             if(textViewAssociate.getCurrentTextColor() != Color.parseColor("#00b200")){
                                 textViewAssociate.setTextColor(Color.parseColor("#00b200"));
+                                linearLayoutKolom.setBackgroundResource(R.drawable.border_green);
                             }else{
                                 textViewAssociate.setTextColor(color);
+                                linearLayoutKolom.setBackgroundResource(0);
                             }
                             toggleAfbeelding(v.getTag().toString());
                         }
@@ -136,9 +138,10 @@ public class Oef4 extends AppCompatActivity {
 
                 this.imagesView[k] = imageView;
                 k++;
-                relativeLayout.addView(imageView);
-                relativeLayout.addView(textViewAssociate);
-                linearLayout.addView(relativeLayout);
+
+                linearLayoutKolom.addView(textViewAssociate);
+                linearLayoutKolom.addView(imageView);
+                linearLayout.addView(linearLayoutKolom);
             }
         }
     }

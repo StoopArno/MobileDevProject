@@ -28,6 +28,11 @@
             android:layout_marginTop="10dp"
             android:text="Voeg kind toe"
             android:onClick="onClickNewKind"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="Klik op een kind in de lijst om een sessie te starten."/>
     </LinearLayout>
 
 

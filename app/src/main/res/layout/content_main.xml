@@ -8,38 +8,91 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingRight="20dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="40dp"
         android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:text="De meeste van deze knoppen zullen nog vervangen en/of veranderd worden door de juiste dingen zodat het verloop van de app correct is. De reden dat de knoppen zo staan is zodat wij deze gemakkelijker kunnen testen. Veel van de tekstvelden en knoppen kunnen ook nog van grootte en uitzicht veranderen"/>
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Kinderen"
-            android:onClick="onClickKinderen"/>
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Meting"
-            android:onClick="onClickMeting"/>
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Overzicht resultaten"
-            android:onClick="onClickOverzicht"/>
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/logo_logopedie" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/app_name"
+                android:textSize="35dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/main_knop_kinderen"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@id/main_knop_overzicht">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onClickKinderen"
+                android:scaleType="centerCrop"
+                android:padding="0dp"
+                android:src="@drawable/kinderen" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:text="Kinderen"
+                android:textColor="#fff"
+                android:textSize="40dp"></TextView>
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/main_knop_overzicht"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onClickOverzicht"
+                android:scaleType="centerCrop"
+                android:padding="0dp"
+                android:src="@drawable/achtergrond_summary"
+                android:text="Overzicht resultaten" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:text="Overzicht"
+                android:textColor="#000"
+                android:textSize="40dp" />
+        </FrameLayout>
+
+    </RelativeLayout>
 
 
 </android.support.constraint.ConstraintLayout>
